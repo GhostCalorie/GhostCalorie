@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Meal, Food} = require('../db/models')
+const {Meal, MealItem, Food} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -41,55 +41,46 @@ router.get('/:mealId', async (req, res, next) => {
   }
 })
 
+
+//update quantity of item in a meal
 router.put('/:mealId', async (req, res, next) => {
   try {
 
-    let meal = await Meal.findOne({
-      where: {
-        id: req.params.mealId
-      }, include: [Food]
-
-    })
+    const mealItem = await MealItem.findOne({where: {foodId: req.body.foodId, mealId: req.params.mealId}})
+    await mealItem.update({quantity: req.body.quantity})
 
 
-    if (req.body.foodItemsToRemove && req.body.foodItemsToRemove.length)
-    {
-      await req.body.foodItemsToRemove.forEach(async (itemID) => {
-        const food = await Food.findOne({where: {id: itemID}})
-
-        await meal.removeFood(food)
-
-
-      })
-  }
-
-
-
-    if (req.body.foodItemsToAdd && req.body.foodItemsToAdd.length)
-    {
-
-      await req.body.foodItemsToAdd.forEach(async (itemID) => {
-        const food = await Food.findOne({where: {id: itemID}})
-
-        await meal.addFood(food)
-
-
-      })
-    }
-
-
-     meal = await Meal.findOne({
-      where: {
-        id: req.params.mealId
-      }, include: [Food]
-
-    })
-
-
-
-    res.json(meal)
+    res.sendStatus(200)
   } catch (err) {
     next(err)
   }
 })
+
+
+//add item to a meal
+router.post('/:mealId', async (req, res, next) => {
+  try {
+
+    await MealItem.create({foodId: req.body.foodId, mealId: req.params.mealId})
+
+
+    res.sendStatus(200)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//delete item from a meal
+router.delete('/:mealId', async (req, res, next) => {
+  try {
+
+    await MealItem.destroy({where: {foodId: req.body.foodId, mealId: req.params.mealId}})
+
+
+    res.sendStatus(200)
+  } catch (err) {
+    next(err)
+  }
+})
+
 
