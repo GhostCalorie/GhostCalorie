@@ -16,11 +16,11 @@ async function seed() {
 
   const foods = await Promise.all([
     Food.create({
-      name: 'brick of coke',
+      name: 'no food whatsoever',
       calories: 69,
       description: 'the ideal way to lose weight. If you want to shed some pounds fast get ahold of one of these guys'
     }),
-    Food.create({name: 'cock popsicle', calories: 251, description: 'finger lickin good!'}),
+    Food.create({name: 'popsicle', calories: 251, description: 'finger lickin good!'}),
     Food.create({
       name: 'pot brownie',
       calories: 420,

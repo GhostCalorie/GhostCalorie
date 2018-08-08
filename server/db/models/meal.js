@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Meal = db.define('meal', {
+const Meal = db.define('MealItem', {
   type: {
     type: Sequelize.STRING,
     unique: true,

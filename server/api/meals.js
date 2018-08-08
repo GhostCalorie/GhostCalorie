@@ -12,23 +12,22 @@ router.get('/', async (req, res, next) => {
 })
 
 
-
-router.get('/:userId', async (req, res, next) => {
+router.get('/byDay/:dayId', async (req, res, next) => {
   try {
-    const meals = await Meal.findAll({
+    const meal = await Meal.findOne({
       where: {
-        userId: req.params.userId
+        dayId: req.params.dayId
       }, include: [Food]
 
     })
-    res.json(meals)
+    res.json(meal)
   } catch (err) {
     next(err)
   }
 })
 
 
-router.get('/singleMeal/:mealId', async (req, res, next) => {
+router.get('/:mealId', async (req, res, next) => {
   try {
     const meal = await Meal.findOne({
       where: {
@@ -41,3 +40,56 @@ router.get('/singleMeal/:mealId', async (req, res, next) => {
     next(err)
   }
 })
+
+router.put('/:mealId', async (req, res, next) => {
+  try {
+
+    let meal = await Meal.findOne({
+      where: {
+        id: req.params.mealId
+      }, include: [Food]
+
+    })
+
+
+    if (req.body.foodItemsToRemove && req.body.foodItemsToRemove.length)
+    {
+      await req.body.foodItemsToRemove.forEach(async (itemID) => {
+        const food = await Food.findOne({where: {id: itemID}})
+
+        await meal.removeFood(food)
+
+
+      })
+  }
+
+
+
+    if (req.body.foodItemsToAdd && req.body.foodItemsToAdd.length)
+    {
+
+      await req.body.foodItemsToAdd.forEach(async (itemID) => {
+        const food = await Food.findOne({where: {id: itemID}})
+
+        await meal.addFood(food)
+
+
+      })
+    }
+
+
+     meal = await Meal.findOne({
+      where: {
+        id: req.params.mealId
+      }, include: [Food]
+
+    })
+
+
+
+    res.json(meal)
+  } catch (err) {
+    next(err)
+  }
+})
+
