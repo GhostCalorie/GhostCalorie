@@ -3,6 +3,7 @@ module.exports = router
 
 router.use('/users', require('./users'))
 router.use('/food', require('./food'))
+router.use('/meals', require('./meals'))
 
 
 router.use((req, res, next) => {
