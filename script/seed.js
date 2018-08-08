@@ -21,6 +21,7 @@ async function seed() {
     Food.create({name: 'carrot', calories: 25, description: 'makin up fun foods got boring'})
 
 
+
   ])
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
