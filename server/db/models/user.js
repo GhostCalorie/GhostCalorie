@@ -8,6 +8,21 @@ const User = db.define('user', {
     unique: true,
     allowNull: false
   },
+
+  startingWeight : {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  name : {
+    type : Sequelize.STRING,
+    allowNull : false
+  },
+  weightGoal :{
+  type: Sequelize.INTEGER,
+  allowNull: false
+  },
+
+
   password: {
     type: Sequelize.STRING,
     // Making `.password` act like a func hides it when serializing to JSON.
