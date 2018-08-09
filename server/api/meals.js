@@ -14,13 +14,13 @@ router.get('/', async (req, res, next) => {
 
 router.get('/byDay/:dayId', async (req, res, next) => {
   try {
-    const meal = await Meal.findOne({
+    const meals = await Meal.findAll({
       where: {
         dayId: req.params.dayId
       }, include: [Food]
 
     })
-    res.json(meal)
+    res.json(meals)
   } catch (err) {
     next(err)
   }
