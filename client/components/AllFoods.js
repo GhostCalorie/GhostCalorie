@@ -18,7 +18,7 @@ class AllFoods extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        foods: getFoodsByMeal(state, this.props.meal.id)
+        // foods: getFoodsByMeal(state, this.props.meal.id)
     }
 }
 
