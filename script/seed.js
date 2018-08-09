@@ -17,6 +17,7 @@ async function seed() {
   const foods = await Promise.all(
     [
     Food.create({
+
       name: 'cookie',
       calories: 69,
       description: 'the ideal way to lose weight. If you want to shed some pounds fast get ahold of one of these guys'
