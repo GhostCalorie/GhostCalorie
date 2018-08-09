@@ -12,7 +12,7 @@ class AllMeal extends React.Component {
                     <div key={individualMeal.id} className="collection center-align">
                         <div className="`collection-item black-text">
                             {individualMeal.type}: {individualMeal.calories}
-                            {/* <AllFoods meal={this.props.meal} /> */}
+                            <AllFoods meal={this.props.meal} />
 
                         </div>
                         <div className="col s12">

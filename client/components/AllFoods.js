@@ -4,8 +4,14 @@ import {getFoodsByMeal} from '../store'
 
 class AllFoods extends Component {
     
+    componentDidMount() {
+        this.props.getFoods(this.props.state, this.props.meal.id)
+    }
+
     render() {
+
         const {foods} = this.props
+        console.log('state', this.props.state)
         return(
             Object.keys(foods.byId).map(elem => {
                 return(
@@ -18,8 +24,15 @@ class AllFoods extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        // foods: getFoodsByMeal(state, this.props.meal.id)
+        state,
+        foods: state.foods
     }
 }
 
-export default connect(mapStateToProps)(AllFoods)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getFoods: (state, mealId) => {dispatch(getFoodsByMeal(state, mealId))}
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllFoods)
