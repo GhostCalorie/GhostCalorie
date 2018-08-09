@@ -25,7 +25,7 @@ const updateCalorieTotal = async mealItem => {
 
   })
 
-  meal.update({calories: calTotal})
+  await  meal.update({calories: calTotal})
 
 
 }
@@ -33,8 +33,6 @@ const updateCalorieTotal = async mealItem => {
 MealItem.afterUpdate(updateCalorieTotal)
 MealItem.afterCreate(updateCalorieTotal)
 MealItem.afterDestroy(updateCalorieTotal)
-
-
 
 
 module.exports = MealItem
