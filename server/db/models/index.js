@@ -2,6 +2,8 @@ const User = require('./user')
 const Food = require('./foods')
 const Meal = require('./meal')
 const Day = require('./day')
+const MealItem = require('./mealItem')
+
 
 
 
@@ -11,16 +13,16 @@ const Day = require('./day')
  *
  *    BlogPost.belongsTo(User)
  */
+Day.hasMany(Meal)
+Meal.belongsTo(Day)
 
-
-Food.belongsToMany(Meal, {through : "MealItem"})
-Meal.belongsToMany(Food, {through : "MealItem"})
+Food.belongsToMany(Meal, {through : MealItem})
+Meal.belongsToMany(Food, {through : MealItem})
 
 User.hasMany(Day)
 Day.belongsTo(User)
 
-Day.hasMany(Meal)
-Meal.belongsTo(Day)
+
 
 
 
@@ -31,5 +33,5 @@ Meal.belongsTo(Day)
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User, Food, Meal, Day
+  User, Food, Meal, Day, MealItem
 }

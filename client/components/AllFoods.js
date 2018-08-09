@@ -1,10 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {getFoodsByMeal} from '../store'
 
 class AllFoods extends Component {
-    componentDidMount() {
-        this.props.fetchFood()
-    }
     
     render() {
         const {foods} = this.props
@@ -20,7 +18,7 @@ class AllFoods extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        foods: state.foods
+        foods: getFoodsByMeal(state, this.props.meal.id)
     }
 }
 
