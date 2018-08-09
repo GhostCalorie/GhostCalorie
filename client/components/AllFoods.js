@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchFood} from '../store'
 
 class AllFoods extends Component {
     componentDidMount() {
@@ -9,7 +8,6 @@ class AllFoods extends Component {
     
     render() {
         const {foods} = this.props
-        console.log('food', foods)
         return(
             Object.keys(foods.byId).map(elem => {
                 return(
@@ -26,12 +24,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchFood: () => {
-            dispatch(fetchFood())
-        }
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(AllFoods)
+export default connect(mapStateToProps)(AllFoods)
