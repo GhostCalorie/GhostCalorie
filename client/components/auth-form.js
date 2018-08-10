@@ -6,25 +6,69 @@ import {auth} from '../store'
 /**
  * COMPONENT
  */
-const AuthForm = props => {
-  const {name, displayName, handleSubmit, error} = props
+function signupForm(isSignup) {
+  console.log(isSignup)
+  if (!isSignup) {
+    return
+  }
+
 
   return (
     <div>
+      <div>
+        <label htmlFor="userName">
+          <small>Name</small>
+        </label>
+        <input name="userName" type="text"/>
+      </div>
+      <div>
+        <label htmlFor="startingWeight">
+          <small>Starting Weight</small>
+        </label>
+        <input name="startingWeight" type="number"/>
+      </div>
+
+      <div>
+        <label htmlFor="weightGoal">
+          <small>Weight Goal</small>
+        </label>
+        <input name="weightGoal" type="number"/>
+      </div>
+
+    </div>
+
+
+  )
+
+}
+
+const AuthForm = props => {
+  const {name, displayName, handleSubmit, error} = props
+  console.log(name)
+  const isSignup = name === 'signup'
+
+  console.log(props)
+  return (
+    <div>
       <form onSubmit={handleSubmit} name={name}>
+
+        {signupForm(isSignup)}
+
         <div>
           <label htmlFor="email">
             <small>Email</small>
           </label>
-          <input name="email" type="text" />
+          <input name="email" type="text"/>
         </div>
         <div>
           <label htmlFor="password">
             <small>Password</small>
           </label>
-          <input name="password" type="password" />
+          <input name="password" type="password"/>
         </div>
         <div>
+
+
           <button type="submit">{displayName}</button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
@@ -64,7 +108,18 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      if (formName === 'signup') {
+
+        const startingWeight = evt.target.startingWeight.value
+        const weightGoal = evt.target.weightGoal.value
+        const userName = evt.target.userName.value
+        dispatch(auth(email, password, formName, startingWeight, weightGoal, userName))
+      }
+      else {
+        dispatch(auth(email, password, formName))
+
+      }
+
     }
   }
 }
