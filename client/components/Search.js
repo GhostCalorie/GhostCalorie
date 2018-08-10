@@ -1,19 +1,33 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { AllFoods } from '.';
+import { AllFoods } from '../components'
 import {Link} from 'react-router-dom'
+import {fetchDBFood} from '../store'
 
 class Search extends Component {
 
+    constructor() {
+        super()
+        this.state = {
+            food: ''
+        }
+    }
+
     handleChange = evt => {
+        this.setState({
+            [evt.target.name]: evt.target.value
+        })
+    }
+
+    handleSubmit = evt => {
         evt.preventDefault()
-        history.push(`/meal/search/${evt.target.value}`)
+        this.props.fetchDBFood(this.state.food)
     }
 
     render() {
-        const { foods } = this.props
         return (
             <div>
+                {console.log('in the search component', this.props)}
                 <div className="col s12 l3 z-depth-2">
                     <form onSubmit={this.handleSubmit}>
                         <label className="label-icon valign-wrapper">
@@ -24,7 +38,7 @@ class Search extends Component {
                             id="search"
                             className="input-field"
                             placeholder="Search..."
-                            name="name"
+                            name="food"
                             onChange={this.handleChange}
                         />
                     </form>
@@ -38,7 +52,7 @@ class Search extends Component {
                     </div>
                 </div>
                 <div>
-                    {/* <AllFoods food={foods} /> */}
+                    <AllFoods dbfoods={this.props.food.dbfoods} />
                 </div>
             </div>
         )
@@ -47,8 +61,18 @@ class Search extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        foods: Object.values(state.foods.byId)
+        dbfoods: state.dbfoods,
+        food: state.foods
     }
 }
 
-export default connect(mapStateToProps)(Search)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchDBFood: (query) => {
+            console.log('query in allfoods component', query)
+            dispatch(fetchDBFood(query))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search)

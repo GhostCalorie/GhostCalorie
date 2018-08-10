@@ -21,7 +21,7 @@ class Routes extends Component {
   }
 
   render() {
-    // const {isLoggedIn} = this.props
+    const {isLoggedIn} = this.props
 
     return (
       // <Switch>
@@ -29,17 +29,15 @@ class Routes extends Component {
       //   <Route path="/login" component={Login} />
       //   <Route path="/signup" component={Signup} />
       //   {isLoggedIn && (
-      <Switch>
-        {/* Routes placed here are only available after logging in */}
-        {/* <Route exact path="/" component={AllMeals} /> */}
-      </Switch>
-      // )}
-      // {/* Displays our Login component as a fallback */}
-      <Switch>
-        <Route path="/" component={AllMeal} />
-        <Route exact path="/meal/search" component={Search} />
+          <Switch>
+            {/* Routes placed here are only available after logging in */}
+            {/* <Route exact path="/" component={AllMeals} /> */}
+            
+      {/* Displays our Login component as a fallback */}
+            <Route exact path="/meal/search" component={Search} />
+            <Route path="/" component={AllMeal} />
 
-      </Switch>
+          </Switch>
       //   )}
       //   {/* Displays our Login component as a fallback */}
       //   <Route component={Login} />
