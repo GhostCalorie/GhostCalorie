@@ -17,11 +17,11 @@ class Search extends Component {
         this.setState({
             [evt.target.name]: evt.target.value
         })
+        this.props.fetchDBFood(evt.target.value)
     }
 
     handleSubmit = evt => {
         evt.preventDefault()
-        this.props.fetchDBFood(this.state.food)
     }
 
     render() {
