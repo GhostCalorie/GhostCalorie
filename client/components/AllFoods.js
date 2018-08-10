@@ -3,17 +3,14 @@ import {connect} from 'react-redux'
 import {getFoodsByMeal} from '../store'
 
 class AllFoods extends Component {
-    
-    componentDidMount() {
-        this.props.getFoods(this.props.state, this.props.meal.id)
-    }
 
     render() {
 
         const {foods} = this.props
-        console.log('state', this.props.state)
+        console.log('state', foods)
         return(
             Object.keys(foods.byId).map(elem => {
+                if(elem.id === this.props.meal.id)
                 return(
                     <h1 key={elem} > {foods.byId[elem].name} </h1>
                 )
@@ -29,10 +26,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getFoods: (state, mealId) => {dispatch(getFoodsByMeal(state, mealId))}
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AllFoods)
+export default connect(mapStateToProps, null)(AllFoods)

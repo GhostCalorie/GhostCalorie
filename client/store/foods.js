@@ -28,6 +28,7 @@ export const fetchFood = () => async dispatch => {
     let res
     try {
         res = await axios.get('/api/food/')
+        console.log('data in get food', res.data)
         dispatch(getFood(res.data))
     } catch(err) {
         return dispatch(getFood({error: err.message}))
@@ -52,14 +53,14 @@ export default function (state = initialState, action) {
 
 //SELECTORS
 
-  export const getFoodsByMeal = (state, mealId) => {
-    return Object.values(state.foodMeals.byId).reduce(
-      (result, foodMeal) => {
-        if (foodMeal.mealId === mealId) {
-          result.push(state.foods.byId[foodMeal.mealId])
-        }
-        return result
-      },
-      []
-    )
-  }
+//   export const getFoodsByMeal = (state, mealId) => {
+//     return Object.values(state.foodMeals.byId).reduce(
+//       (result, foodMeal) => {
+//         if (foodMeal.mealId === mealId) {
+//           result.push(state.foods.byId[foodMeal.mealId])
+//         }
+//         return result
+//       },
+//       []
+//     )
+//   }
