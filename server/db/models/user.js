@@ -9,18 +9,18 @@ const User = db.define('user', {
     allowNull: false
   },
 
-  // startingWeight : {
-  //   type: Sequelize.INTEGER,
-  //   allowNull: false
-  // },
-  // name : {
-  //   type : Sequelize.STRING,
-  //   allowNull : false
-  // },
-  // weightGoal :{
-  // type: Sequelize.INTEGER,
-  // allowNull: false
-  // },
+  startingWeight : {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  name : {
+    type : Sequelize.STRING,
+    allowNull : false
+  },
+  weightGoal :{
+  type: Sequelize.INTEGER,
+  allowNull: false
+  },
 
 
   password: {

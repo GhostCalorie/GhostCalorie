@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
@@ -26,6 +27,7 @@ class AllFoods extends Component {
                     )
                 }
             })
+
         )
     }
 }
@@ -39,3 +41,5 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, null)(AllFoods)
+
+        
