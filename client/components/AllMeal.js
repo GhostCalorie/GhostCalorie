@@ -17,7 +17,7 @@ class AllMeal extends React.Component {
                         </div>
                         <div className="col s12">
                             <Link
-                                to={`meal/search/${individualMeal.id}`}
+                                to={`meal/search`}
                                 className="waves-effect green darken-2 waves-light btn"
                             >
                                 Add Food

@@ -1,15 +1,16 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
-  Login, 
-  Signup, 
+  Login,
+  Signup,
   UserHome,
+  Search,
   AllFoods,
   AllMeal
 } from './components'
-import {me, fetchFood, getMeals, getMealItems} from './store'
+import { me, fetchFood, getMeals, getMealItems } from './store'
 
 /**
  * COMPONENT
@@ -20,7 +21,7 @@ class Routes extends Component {
   }
 
   render() {
-    // const {isLoggedIn} = this.props
+    const {isLoggedIn} = this.props
 
     return (
       // <Switch>
@@ -30,8 +31,12 @@ class Routes extends Component {
       //   {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-
+            {/* <Route exact path="/" component={AllMeals} /> */}
+            
+      {/* Displays our Login component as a fallback */}
+            <Route exact path="/meal/search" component={Search} />
             <Route path="/" component={AllMeal} />
+
           </Switch>
       //   )}
       //   {/* Displays our Login component as a fallback */}
