@@ -44,7 +44,7 @@ class Search extends Component {
                     </form>
                     <div className="col s12">
                         <Link
-                            to={`meal/`}
+                            to={`/`}
                             className="waves-effect orange darken-2 waves-light btn"
                         >
                             Done
