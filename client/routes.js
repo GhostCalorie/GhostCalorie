@@ -1,14 +1,16 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
-  Login, 
-  Signup, 
+  Login,
+  Signup,
   UserHome,
-  Search
+  Search,
+  AllFoods,
+  AllMeal
 } from './components'
-import {me, fetchFood} from './store'
+import { me, fetchFood, getMeals, getMealItems } from './store'
 
 /**
  * COMPONENT
@@ -19,7 +21,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    // const {isLoggedIn} = this.props
 
     return (
       // <Switch>
@@ -27,13 +29,19 @@ class Routes extends Component {
       //   <Route path="/login" component={Login} />
       //   <Route path="/signup" component={Signup} />
       //   {isLoggedIn && (
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            {/* <Route exact path="/" component={AllMeals} /> */}
-            <Route exact path="/meal/search" component={Search} />
-          </Switch>
-        // )}
-        // {/* Displays our Login component as a fallback */}
+      <Switch>
+        {/* Routes placed here are only available after logging in */}
+        {/* <Route exact path="/" component={AllMeals} /> */}
+      </Switch>
+      // )}
+      // {/* Displays our Login component as a fallback */}
+      <Switch>
+        <Route path="/" component={AllMeal} />
+        <Route exact path="/meal/search" component={Search} />
+
+      </Switch>
+      //   )}
+      //   {/* Displays our Login component as a fallback */}
       //   <Route component={Login} />
       // </Switch>
     )
@@ -53,9 +61,11 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    loadInitialData() {
-      dispatch(me())
-      dispatch(fetchFood())
+    async loadInitialData() {
+      await dispatch(me())
+      await dispatch(getMeals())
+      await dispatch(fetchFood())
+      await dispatch(getMealItems())
     }
   }
 }

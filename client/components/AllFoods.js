@@ -1,27 +1,45 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 class AllFoods extends Component {
-    componentDidMount() {
-        this.props.fetchFood()
-    }
-    
+
     render() {
-        const {foods} = this.props
-        return(
-            Object.keys(foods.byId).map(elem => {
-                return(
-                    <h1 key={elem} > {foods.byId[elem].name} </h1>
-                )
+        console.log('state', this.props)
+        if (!this.props.mealItems) {
+            return null
+        }
+        const { foods, mealItems } = this.props
+
+        if(!Object.keys(foods.byId).length) {
+            return null
+        }
+
+        return (
+            Object.values(mealItems.byId).map(elem => {
+                console.log('elem', elem)
+                console.log('props mealId', this.props.mealId)
+
+                if (elem.mealId === this.props.mealId) {
+                    return (
+
+                        <h1 key={elem.id} > {foods.byId[(elem.foodId).toString()].name} </h1>
+                    )
+                }
             })
+
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        foods: state.foods
+        state,
+        foods: state.foods,
+        mealItems: state.mealItem
     }
 }
 
-export default connect(mapStateToProps)(AllFoods)
+export default connect(mapStateToProps, null)(AllFoods)
+
+        

@@ -36,7 +36,7 @@ const Navbar = props => (
       <div className="nav-wrapper container">
         <Link to="/" className="brand-logo logo-container">
           <i className="material-icons">airline_seat_flat</i>
-          <span className="flow-text truncate"> Last Resort </span>
+          <span className="flow-text truncate"> Ghost Calorie </span>
         </Link>
 
         <ul className="right hide-on-med-and-down">
