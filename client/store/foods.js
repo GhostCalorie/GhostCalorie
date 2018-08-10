@@ -15,7 +15,8 @@ const initialState = {
             calories: '',
             description: 'Loading...'
         }
-    }
+    },
+    allIds: []
 }
 
 //ACTION CREATORS

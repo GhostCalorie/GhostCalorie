@@ -5,16 +5,26 @@ const Food = require('./foods')
 
 
 const MealItem = db.define('mealItem', {
+
+  id: {
+    autoIncrement: true,
+    primaryKey: true,
+    type: Sequelize.INTEGER
+  },
   quantity: {
     type: Sequelize.INTEGER,
-    defaultValue: 1
+    defaultValue: 1,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   }
 
 })
 
 const updateCalorieTotal = async mealItem => {
 
-  const meal = await Meal.findOne({where: {id: mealItem.mealId}, include: [Food]})
+  const meal = await Meal.findOne({ where: { id: mealItem.mealId }, include: [Food] })
 
   let calTotal = 0
 
@@ -25,7 +35,7 @@ const updateCalorieTotal = async mealItem => {
 
   })
 
-  meal.update({calories: calTotal})
+  await meal.update({ calories: calTotal })
 
 
 }

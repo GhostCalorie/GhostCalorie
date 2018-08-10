@@ -9,7 +9,7 @@ import {
   AllFoods,
   AllMeal
 } from './components'
-import {me, fetchFood, getMeals} from './store'
+import {me, fetchFood, getMeals, getMealItems} from './store'
 
 /**
  * COMPONENT
@@ -53,10 +53,11 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    loadInitialData() {
-      dispatch(me())
-      dispatch(getMeals())
-      dispatch(fetchFood())
+    async loadInitialData() {
+      await dispatch(me())
+      await dispatch(getMeals())
+      await dispatch(fetchFood())
+      await dispatch(getMealItems())
     }
   }
 }
