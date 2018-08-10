@@ -1,41 +1,32 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {fetchDBFood} from '../store'
-// import axios from 'axios'
+
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 class AllFoods extends Component {
-    constructor() {
-        super();
-        this.state = {
-            food: ''
-        }
-    }
 
-    handleChange = (evt) => {
-        this.setState({
-            [evt.target.name]: evt.target.value
-        })
-    }
-    
     render() {
-        const {foods} = this.props
-        return(
-            <div>
-            {Object.values(foods.byId).map(elem => {
-                return(
-                    <h1 key={elem.id} > {elem.name} </h1>
-                )
-            })}
+        console.log('state', this.props)
+        if (!this.props.mealItems) {
+            return null
+        }
+        const { foods, mealItems } = this.props
 
-            <form onSubmit={(evt) => {
-                evt.preventDefault()
-                this.props.fetchDBFood(this.state.food)
-            }}>
-                <label>food input</label>
-                <input name='food' value={this.state.food} onChange={this.handleChange} />
-                <button type='submit'> SUBMIT </button>
-            </form>
-            </div>
+        if(!Object.keys(foods.byId).length) {
+            return null
+        }
+
+        return (
+            Object.values(mealItems.byId).map(elem => {
+                console.log('elem', elem)
+                console.log('props mealId', this.props.mealId)
+
+                if (elem.mealId === this.props.mealId) {
+                    return (
+
+                        <h1 key={elem.id} > {foods.byId[(elem.foodId).toString()].name} </h1>
+                    )
+                }
+            })
 
         )
     }
@@ -43,18 +34,12 @@ class AllFoods extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        state,
         foods: state.foods,
-        dbfoods: state.dbfoods
+        mealItems: state.mealItem
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchDBFood: (query) => {
-            console.log('query in allfoods component', query)
-            dispatch(fetchDBFood(query))
-        }
-    }
-}
+export default connect(mapStateToProps, null)(AllFoods)
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllFoods)
+        

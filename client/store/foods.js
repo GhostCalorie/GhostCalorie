@@ -17,7 +17,10 @@ const initialState = {
             description: 'Loading...'
         }
     },
+
+    allIds: []
     dbfoods: []
+
 }
 
 //ACTION CREATORS
@@ -73,3 +76,16 @@ export default function (state = initialState, action) {
     }
 }
 
+//SELECTORS
+
+//   export const getFoodsByMeal = (state, mealId) => {
+//     return Object.values(state.foodMeals.byId).reduce(
+//       (result, foodMeal) => {
+//         if (foodMeal.mealId === mealId) {
+//           result.push(state.foods.byId[foodMeal.mealId])
+//         }
+//         return result
+//       },
+//       []
+//     )
+//   }

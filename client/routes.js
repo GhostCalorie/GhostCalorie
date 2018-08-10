@@ -6,9 +6,10 @@ import {
   Login, 
   Signup, 
   UserHome,
-  AllFoods
+  AllFoods,
+  AllMeal
 } from './components'
-import {me, fetchFood} from './store'
+import {me, fetchFood, getMeals, getMealItems} from './store'
 
 /**
  * COMPONENT
@@ -19,23 +20,23 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    // const {isLoggedIn} = this.props
 
     return (
-      <Switch>
-        {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        {isLoggedIn && (
+      // <Switch>
+      //   {/* Routes placed here are available to all visitors */}
+      //   <Route path="/login" component={Login} />
+      //   <Route path="/signup" component={Signup} />
+      //   {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-            <Route path="/food" component={AllFoods} />
+
+            <Route path="/" component={AllMeal} />
           </Switch>
-        )}
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
-      </Switch>
+      //   )}
+      //   {/* Displays our Login component as a fallback */}
+      //   <Route component={Login} />
+      // </Switch>
     )
   }
 }
@@ -53,9 +54,11 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    loadInitialData() {
-      dispatch(me())
-      dispatch(fetchFood())
+    async loadInitialData() {
+      await dispatch(me())
+      await dispatch(getMeals())
+      await dispatch(fetchFood())
+      await dispatch(getMealItems())
     }
   }
 }
