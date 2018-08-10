@@ -18,7 +18,7 @@ const initialState = {
         }
     },
 
-    allIds: []
+    allIds: [],
     dbfoods: []
 
 }
