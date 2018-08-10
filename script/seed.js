@@ -12,7 +12,12 @@ async function seed() {
     User.create({name: 'jim', startingWeight: 276, weightGoal: 250, email: 'murphy@email.com', password: '123'})
   ])
 
+  const usr = await  User.create({name: 'bob', startingWeight: 276, weightGoal: 250, email: 'bobby@email.com', password: '123'})
+
+
+
   const day = await Day.create()
+  usr.addDay(day)
 
   const foods = await Promise.all(
     [

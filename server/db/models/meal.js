@@ -4,7 +4,6 @@ const db = require('../db')
 const Meal = db.define('meal', {
   type: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false,
     validate: {
       notEmpty:true
