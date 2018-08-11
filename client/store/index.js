@@ -6,8 +6,15 @@ import user from './user'
 import meal from './meal'
 import foods from './foods'
 import mealItem from './mealitem'
+import {reducer as formReducer} from 'redux-form'
 
-const reducer = combineReducers({user, foods, meal, mealItem})
+const reducer = combineReducers({
+  user, 
+  foods, 
+  meal, 
+  mealItem,
+  form: formReducer
+})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

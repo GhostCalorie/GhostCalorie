@@ -3,6 +3,12 @@ const {Food} = require('../db/models')
 const request = require('request-promise-native')
 module.exports = router
 
+const createFoodFromJSON = body => ({
+  name: '' + body.name,
+  calories: +body.calories,
+  description: '' + body.description
+})
+
 router.get('/', async (req, res, next) => {
   try {
     const foods = await Food.findAll({})
@@ -72,7 +78,7 @@ router.get('/:foodId', async (req, res, next) => {
 //create a new food in the DB
 router.post('/', async (req, res, next) => {
   try {
-    await Food.create({name: req.body.name, calories: req.body.calories, description: req.body.description})
+    const food = await Food.create(req.body)
 
     res.json(food)
   } catch (err) {
@@ -80,3 +86,21 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router
+  .route('/:foodId')
+  // .all(isAdmin)
+  .put((req, res, next) => {
+    if (req.body.id && +req.body.id !== +req.params.foodId) {
+      next(new Error('Bad Request detected in PUT /:productId'))
+    } else {
+      Food.update(createFoodFromJSON(req.body), {
+        where: {id: +req.params.foodId},
+        returning: true
+      })
+        .spread(
+          (done, updatedFood) =>
+            done ? res.json(...updatedFood) : res.status(404).end()
+        )
+        .catch(next)
+    }
+  })

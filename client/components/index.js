@@ -7,4 +7,8 @@ export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
 export {default as AllMeal} from './AllMeal'
 export {default as AllFoods} from './AllFoods'
+export {default as FoodForm} from './FoodForm'
+export {default as AddFood} from './AddFood'
+export {default as EditFood} from './EditFood'
+
 export {Login, Signup} from './auth-form'
