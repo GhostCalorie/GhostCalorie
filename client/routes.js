@@ -8,9 +8,11 @@ import {
   UserHome,
   Search,
   AllFoods,
-  AllMeal
+  AllMeal,
+  CalorieTracker
 } from './components'
 import { me, fetchFood, getMeals, getMealItems } from './store'
+
 
 /**
  * COMPONENT
@@ -35,7 +37,9 @@ class Routes extends Component {
             
       {/* Displays our Login component as a fallback */}
             <Route exact path="/meal/search" component={Search} />
+            <Route exact path="/calorie" component={CalorieTracker} />
             <Route path="/" component={AllMeal} />
+            
 
           </Switch>
         )}
