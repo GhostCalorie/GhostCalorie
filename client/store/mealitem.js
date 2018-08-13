@@ -35,7 +35,6 @@ export const getMealItems = () => dispatch => {
   axios
     .get('/api/mealItems')
     .then(({data}) => {
-        console.log('data for meal items', data)
       dispatch(gotMealItem(data))
     })
     .catch(error => console.error(error))
@@ -53,7 +52,6 @@ export default function(state = defaultMealItem, action) {
         }, {}),
         allIds: action.mealItems.map(mealItem => mealItem.id)
       }
-      console.log('new state in reducer', newState)
       return newState;
     default:
       return state
