@@ -11,4 +11,5 @@ export {default as FoodForm} from './FoodForm'
 export {default as AddFood} from './AddFood'
 export {default as EditFood} from './EditFood'
 
+export {default as Search} from './Search'
 export {Login, Signup} from './auth-form'

@@ -10,15 +10,14 @@ class AllMeal extends React.Component {
             <div>
                 {this.props.meal.map(individualMeal => (
                     <div key={individualMeal.id} className="collection center-align">
-                        <div className="`collection-item black-text">
-                            {individualMeal.type}: {individualMeal.calories}
-                            <AllFoods mealId={individualMeal.id} />
-
+                        <div className="flow-text truncate">
+                            {individualMeal.type}: {individualMeal.calories} calories
                         </div>
+                        <AllFoods mealId={individualMeal.id} />
                         <div className="col s12">
                             <Link
-                                to={`meal/search/${individualMeal.id}`}
-                                className="waves-effect green darken-2 waves-light btn"
+                                to={`meal/search`}
+                                className="waves-effect orange darken-2 waves-light btn"
                             >
                                 Add Food
                         <i className="material-icons right">add</i>
