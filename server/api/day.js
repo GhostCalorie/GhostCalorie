@@ -4,14 +4,14 @@ module.exports = router
 
 // MOUNT on '/api/day/'
 
-router.post('/', async (req, res, next) => {
-  try{
-    let day = await Day.create(req.body)
-    res.json(day)
-  } catch(err) {
-    next(err)
-  }
-})
+// router.post('/', async (req, res, next) => {
+//   try{
+//     let day = await Day.create(req.body)
+//     res.json(day)
+//   } catch(err) {
+//     next(err)
+//   }
+// })
 
 router.get('/byUser/:userId', async (req, res, next) => {
   try {
