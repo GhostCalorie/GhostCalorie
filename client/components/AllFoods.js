@@ -5,7 +5,6 @@ import {postFood} from '../store'
 
 class AllFoods extends Component {
   submit = addedFood => {
-    console.log('added food', addedFood)
     const currentMealId = Number(window.location.pathname.split('/')[3])
     addedFood.mealId = currentMealId
     this.props.postFood(addedFood)
@@ -26,17 +25,17 @@ class AllFoods extends Component {
         if (elem.mealId === this.props.mealId) {
           return (
             <Link
-              to={`/food/${elem.id}/edit`}
+              to={`/food/${elem.foodId}/edit`}
               className="collection-item black-text"
-              key={elem.id}
+              key={elem.foodId}
             >
-              <div> {foods.byId[elem.foodId.toString()].name} </div>
+              <div> {foods.byId[elem.foodId.toString()].item_name} </div>
             </Link>
           )
         }
       })
     } else {
-      console.log('in the dbfood component')
+        console.log('db props', this.props)
 
       return this.props.dbfoods.hits.map(individualHits => {
         return (

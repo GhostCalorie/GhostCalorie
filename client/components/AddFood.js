@@ -1,6 +1,6 @@
 import React from 'react'
 import {FoodForm} from '../components'
-import {postFood} from '../store'
+import {postFood, addMealItems} from '../store'
 import {connect} from 'react-redux'
 
 class AddFood extends React.Component {
@@ -16,7 +16,7 @@ class AddFood extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postFood: newFood => dispatch(postFood(newFood))
+    postFood: newFood => dispatch(postFood(newFood)),
   }
 }
 

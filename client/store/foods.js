@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { FoodForm } from '../components';
-
+import {addMealItem} from '../store'
 
 //ACTION TYPES
 
@@ -15,9 +15,14 @@ const initialState = {
     byId: {
         0: {
             id: 0,
-            name: '',
-            calories: '',
-            description: 'Loading...'
+            item_name: 'Loading...',
+            brand_name: 'Loading...',
+            nf_calories: 0,
+            nf_sodium: 0,
+            nf_protein: 0,
+            nf_sugars: 0,
+            nf_total_carbohydrate: 0,
+            total_fat: 0
         }
     },
 
@@ -70,6 +75,7 @@ export const postFood = newFood => dispatch => {
         .then(({ data }) => {
             console.log('correct data in food', data)
             dispatch(addFood(data))
+            // dispatch(addMealItem({foodId: data.id, mealId: }))
             // history.push(`/food/${data.id}`)
         })
         .catch(error => console.error(error))
@@ -78,8 +84,12 @@ export const postFood = newFood => dispatch => {
 export const putFood = food => dispatch => {
     axios
         .put(`/api/food/${food.id}`, food)
-        .then(({ data }) => dispatch(updateFood(data)))
-        .catch(err => console.error(err))
+        .then(({ data }) => {
+            console.log('data in the put requrstl', data)
+            dispatch(updateFood(data)
+
+        )})
+        .catch (err => console.error(err))
 }
 
 //REDUCER
@@ -88,6 +98,7 @@ export default function (state = initialState, action) {
     switch (action.type) {
         case GET_FOOD:
             return {
+                ...state,
                 byId: action.food.reduce((result, food) => {
                     result[food.id] = food
                     return result
@@ -100,12 +111,16 @@ export default function (state = initialState, action) {
             }
 
         case ADD_FOOD:
+        console.log('state in add food', state)
             return {
+                ...state,
                 byId: { ...state.byId, [action.addedFood.id]: action.addedFood },
-                allIds: [...state.allIds, action.addedFood.id]
+                allIds: [...state.allIds, action.addedFood.id],
             }
         case UPDATE_FOOD:
+        console.log('state in update food', state)
             return {
+                ...state, 
                 byId: {
                     ...state.byId,
                     [action.updatedFood.id]: action.updatedFood

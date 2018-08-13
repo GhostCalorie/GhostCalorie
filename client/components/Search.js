@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import { fetchDBFood } from '../store'
 
 class Search extends Component {
-
     constructor() {
         super()
         this.state = {
@@ -21,9 +20,10 @@ class Search extends Component {
     }
 
     render() {
+        console.log("in the search componentn")
         return (
             <div>
-                {console.log('in the search component', this.props)}
+                {/* {console.log('in the search component', this.props)} */}
                 <div className="col s12 l3 z-depth-2">
                     <form>
                         <label className="label-icon valign-wrapper">
@@ -65,7 +65,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchDBFood: (query) => {
-            console.log('query in allfoods component', query)
+            // console.log('query in allfoods component', query)
             dispatch(fetchDBFood(query))
         }
     }

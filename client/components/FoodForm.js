@@ -6,36 +6,73 @@ let FoodForm = props => {
   const {handleSubmit, pristine, submitting} = props
   return (
     <div>
-      <h3>Add/Edit Food</h3>
+      <h3>Edit Food</h3>
       <br />
       <form onSubmit={handleSubmit}>
         <div>
-        <label htmlFor="name">Name of Food</label>
-
+        <label htmlFor="brand_name">Name of Brand</label>
           <Field 
-          name="name" 
+          name="brand_name" 
           component="input" 
           type="text" 
           />
         </div>
         <div>
-        <label htmlFor="calories">Calories</label>
+        <label htmlFor="item_name">Name</label>
 
           <Field 
-          name="calories" 
+          name="item_name" 
           component="input" 
-          type="number" 
+          type="text" 
           />
           {/* <span className="helper-text">Cannot be empty, must be > 0</span> */}
         </div>
         <div>
-        <label htmlFor="description">Food Description</label>
-
+        <label htmlFor="nf_calories">Calories</label>
           <Field
-            id="description"
-            name="description"
+            name="nf_calories"
             component="input"
-            type="text"
+            type="number"
+          />
+        </div>
+        <div>
+        <label htmlFor="nf_sodium">Sodium</label>
+          <Field
+            name="nf_sodium"
+            component="input"
+            type="number"
+          />
+        </div>
+        <div>
+        <label htmlFor="nf_protein">Protein</label>
+          <Field
+            name="nf_protein"
+            component="input"
+            type="number"
+          />
+        </div>
+        <div>
+        <label htmlFor="nf_sugars">Sugars</label>
+          <Field
+            name="nf_sugars"
+            component="input"
+            type="number"
+          />
+        </div>
+        <div>
+        <label htmlFor="nf_total_carbohydrate">Total Carbohydrate</label>
+          <Field
+            name="nf_total_carbohydrate"
+            component="input"
+            type="number"
+          />
+        </div>
+        <div>
+        <label htmlFor="total_fat">Total Fat</label>
+          <Field
+            name="total_fat"
+            component="input"
+            type="number"
           />
         </div>
         <button disabled={pristine || submitting} type="submit">

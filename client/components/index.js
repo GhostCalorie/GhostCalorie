@@ -12,4 +12,6 @@ export {default as AddFood} from './AddFood'
 export {default as EditFood} from './EditFood'
 
 export {default as Search} from './Search'
+export {default as CalorieTracker} from './CalorieTracker'
+export {default as Days} from './Days'
 export {Login, Signup} from './auth-form'

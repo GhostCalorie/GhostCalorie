@@ -22,18 +22,45 @@ async function seed() {
   const foods = await Promise.all(
     [
     Food.create({
-
-      name: 'cookie',
-      calories: 69,
-      description: 'the ideal way to lose weight. If you want to shed some pounds fast get ahold of one of these guys'
+      brand_name: 'Whole Foods',
+      item_name: 'pasta',
+      nf_calories: 50,
+      nf_sodium: 20,
+      nf_protein: 10,
+      nf_sugars: 15,
+      nf_total_carbohydrate: 5,
+      total_fat: 6
     }),
-    Food.create({name: 'popsicle', calories: 251, description: 'finger lickin good!'}),
     Food.create({
-      name: 'brownie',
-      calories: 420,
-      description: 'you passed out on the couch? honestly what were you expecting'
+      brand_name: '360',
+      item_name: 'meat',
+      nf_calories: 50,
+      nf_sodium: 20,
+      nf_protein: 10,
+      nf_sugars: 15,
+      nf_total_carbohydrate: 5,
+      total_fat: 6
     }),
-    Food.create({name: 'carrot', calories: 25, description: 'makin up fun foods got boring'})
+    Food.create({
+      brand_name: 'kraft',
+      item_name: 'cheese',
+      nf_calories: 50,
+      nf_sodium: 20,
+      nf_protein: 10,
+      nf_sugars: 15,
+      nf_total_carbohydrate: 5,
+      total_fat: 6
+    }),
+    Food.create({
+      brand_name: 'rolo',
+      item_name: 'chocolate',
+      nf_calories: 50,
+      nf_sodium: 20,
+      nf_protein: 10,
+      nf_sugars: 15,
+      nf_total_carbohydrate: 5,
+      total_fat: 6
+    })
   ]
 )
 

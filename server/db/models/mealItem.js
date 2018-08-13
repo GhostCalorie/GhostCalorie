@@ -31,7 +31,7 @@ const updateCalorieTotal = async mealItem => {
 
   //goes through each food associated with a meal and sums the multiple of its quantity and calorie amt to get total cal of a meal
   meal.dataValues.food.forEach((food) => {
-    calTotal += food.dataValues.mealItem.dataValues.quantity * food.dataValues.calories
+    calTotal += food.dataValues.mealItem.dataValues.quantity * food.dataValues.nf_calories
 
   })
 
