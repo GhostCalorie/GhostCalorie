@@ -68,8 +68,9 @@ export const postFood = newFood => dispatch => {
     axios
         .post('/api/food', newFood)
         .then(({ data }) => {
+            console.log('correct data in food', data)
             dispatch(addFood(data))
-            history.push(`/food/${data.id}`)
+            // history.push(`/food/${data.id}`)
         })
         .catch(error => console.error(error))
 }

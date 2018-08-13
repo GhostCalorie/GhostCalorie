@@ -16,7 +16,7 @@ class AddFood extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postProduct: newFood => dispatch(postFood(newFood))
+    postFood: newFood => dispatch(postFood(newFood))
   }
 }
 

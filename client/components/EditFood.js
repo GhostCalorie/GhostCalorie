@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 class EditFood extends React.Component {
   submit = editedFood => {
     this.props.putFood(editedFood)
-    this.props.history.push(`/food/${this.props.match.params.foodId}`)
+    this.props.history.push(`/`)
   }
   render() {
     return <FoodForm {...this.props} onSubmit={this.submit} />

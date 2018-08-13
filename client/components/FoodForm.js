@@ -10,30 +10,33 @@ let FoodForm = props => {
       <br />
       <form onSubmit={handleSubmit}>
         <div>
+        <label htmlFor="name">Name of Food</label>
+
           <Field 
           name="name" 
           component="input" 
           type="text" 
           />
-          <label htmlFor="name">Name of Food</label>
         </div>
         <div>
+        <label htmlFor="calories">Calories</label>
+
           <Field 
           name="calories" 
           component="input" 
           type="number" 
           />
-          <label htmlFor="calories">Calories</label>
           {/* <span className="helper-text">Cannot be empty, must be > 0</span> */}
         </div>
-        <div className="col s12 input-field">
+        <div>
+        <label htmlFor="description">Food Description</label>
+
           <Field
             id="description"
             name="description"
-            component="textarea"
-            className="materialize-textarea"
+            component="input"
+            type="text"
           />
-          <label htmlFor="description">Food Description</label>
         </div>
         <button disabled={pristine || submitting} type="submit">
           Submit
@@ -57,7 +60,7 @@ const mapDispatchToProps = dispatch => ({})
 const mapStateToProps = (state, {match}) => ({
   // This `initialValues` variable name below is required by redux-forms
   //only for edit, if there is a id in the url
-  initialValues: state.foods.byId[match.params.foodId]
+  initialValues: state.foods.byId[match.params.foodId],
 })
 
 FoodForm = reduxForm({form: 'foodForm'})(FoodForm)

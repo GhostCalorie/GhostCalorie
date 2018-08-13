@@ -8,7 +8,9 @@ import {
   UserHome,
   Search,
   AllFoods,
-  AllMeal
+  AllMeal,
+  AddFood,
+  EditFood
 } from './components'
 import { me, fetchFood, getMeals, getMealItems } from './store'
 
@@ -21,7 +23,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    const { isLoggedIn } = this.props
 
     return (
       // <Switch>
@@ -29,15 +31,16 @@ class Routes extends Component {
       //   <Route path="/login" component={Login} />
       //   <Route path="/signup" component={Signup} />
       //   {isLoggedIn && (
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            {/* <Route exact path="/" component={AllMeals} /> */}
-            
-      {/* Displays our Login component as a fallback */}
-            <Route exact path="/meal/search" component={Search} />
-            <Route path="/" component={AllMeal} />
+      <Switch>
+        {/* Routes placed here are only available after logging in */}
+        {/* <Route exact path="/" component={AllMeals} /> */}
 
-          </Switch>
+        {/* Displays our Login component as a fallback */}
+        <Route exact path="/" component={AllMeal} />
+        <Route path="/meal/search/:mealId" component={Search} />
+        <Route path="/food/:foodId/add" component={AddFood} />
+        <Route path="/food/:foodId/edit" component={EditFood} />
+      </Switch>
       //   )}
       //   {/* Displays our Login component as a fallback */}
       //   <Route component={Login} />

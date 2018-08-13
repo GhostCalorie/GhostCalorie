@@ -1,54 +1,69 @@
-
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {postFood} from '../store'
 
 class AllFoods extends Component {
+  submit = addedFood => {
+    console.log('added food', addedFood)
+    const currentMealId = Number(window.location.pathname.split('/')[3])
+    addedFood.mealId = currentMealId
+    this.props.postFood(addedFood)
+  }
 
-    render() {
-        if (!this.props.mealItems) {
-            return null
-        }
-        const { foods, mealItems } = this.props
-
-        if (!Object.keys(foods.byId).length) {
-            return null
-        }
-
-        if (!this.props.dbfoods) {
-            return (
-                Object.values(mealItems.byId).map(elem => {
-                    if (elem.mealId === this.props.mealId) {
-                        return (
-                            <div key={elem.id} > {foods.byId[(elem.foodId).toString()].name} </div>
-                        )
-                    }
-                })
-
-            )
-        } else {
-            console.log('in the dbfood component')
-
-            return (
-
-                this.props.dbfoods.hits.map(hits => {
-                    return (
-                        <div key={hits._id}> {hits.fields.item_name} </div>
-                    )
-                })
-            )
-        }
+  render() {
+    if (!this.props.mealItems) {
+      return null
     }
+    const {foods, mealItems} = this.props
+
+    if (!Object.keys(foods.byId).length) {
+      return null
+    }
+
+    if (!this.props.dbfoods) {
+      return Object.values(mealItems.byId).map(elem => {
+        if (elem.mealId === this.props.mealId) {
+          return (
+            <Link
+              to={`/food/${elem.id}/edit`}
+              className="collection-item black-text"
+              key={elem.id}
+            >
+              <div> {foods.byId[elem.foodId.toString()].name} </div>
+            </Link>
+          )
+        }
+      })
+    } else {
+      console.log('in the dbfood component')
+
+      return this.props.dbfoods.hits.map(individualHits => {
+        return (
+          <div key = {individualHits._id}>
+            {individualHits.fields.item_name} 
+            <button className="waves-effect green waves-light btn" onClick = {() => {this.submit(individualHits.fields)}}>
+                Add Food
+            </button>
+          </div>
+        )
+      })
+    }
+  }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        state,
-        foods: state.foods,
-        mealItems: state.mealItem,
-
-    }
+const mapStateToProps = state => {
+  return {
+    state,
+    foods: state.foods,
+    mealItems: state.mealItem
+  }
 }
 
-export default connect(mapStateToProps, null)(AllFoods)
+const mapDispatchToProps = dispatch => {
+  return {
+    postFood: newFood => dispatch(postFood(newFood))
+  }
+}
 
-
+export default connect(mapStateToProps, mapDispatchToProps)(AllFoods)
