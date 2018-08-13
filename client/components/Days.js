@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
-import {postDay} from '../store'
+import {postDay, me} from '../store'
 
 class Days extends Component {
 
@@ -12,6 +12,10 @@ class Days extends Component {
         }
     }
 
+    componentDidMount() {
+        this.props.getUser()
+    }
+
     handleChange = evt => {
         this.setState({
             [evt.target.name]: evt.target.value
@@ -21,11 +25,10 @@ class Days extends Component {
 
     handleSubmit = evt => {
         evt.preventDefault()
-        this.props.postDay(evt)
+        this.props.postDay(evt, this.props.user)
     }
 
     render() {
-        console.log('props',this.props)
         return (
             <form onSubmit={this.handleSubmit}>
                 <label> input calories: </label>
@@ -52,16 +55,19 @@ class Days extends Component {
 
 const mapStateToProps = state => {
     return {
-
+        user: state.user.id
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        postDay: (evt) => {
+        postDay: (evt,userId) => {
             const calories = evt.target.calories.value
             const description = evt.target.description.value
-            dispatch(postDay({calories, description}))
+            dispatch(postDay({calories, description, userId}))
+        },
+        getUser: () => {
+            dispatch(me())
         }
     }
 }

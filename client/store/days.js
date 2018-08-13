@@ -18,10 +18,10 @@ const createDay = day => ({type: CREATE_DAY, day})
 
 //POST to GC DB
 
-export const postDay = () => async dispatch => {
+export const postDay = (day) => async dispatch => {
     try {
-        console.log('historypoo', history)
-        let res = await axios.post(`/api/day/${id}`) 
+        
+        let res = await axios.post(`/api/day/`, day)
         dispatch(createDay(res.data))
     } catch(err) {
         return dispatch(createDay({error: err.message}))
