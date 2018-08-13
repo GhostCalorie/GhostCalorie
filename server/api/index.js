@@ -5,6 +5,7 @@ router.use('/users', require('./users'))
 router.use('/food', require('./food'))
 router.use('/meals', require('./meals'))
 router.use('/mealItems', require('./mealItems'))
+router.use('/day', require('./day'))
 
 
 

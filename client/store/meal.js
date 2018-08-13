@@ -18,7 +18,6 @@ export const getMeals = () => dispatch => {
     axios
         .get(`/api/meals`)
         .then(({ data }) => {
-            console.log('data in get meal', data)
             dispatch(gotMeals(data))
         }
         )

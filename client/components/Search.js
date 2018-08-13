@@ -27,7 +27,7 @@ class Search extends Component {
     render() {
         return (
             <div>
-                {console.log('in the search component', this.props)}
+                {/* {console.log('in the search component', this.props)} */}
                 <div className="col s12 l3 z-depth-2">
                     <form onSubmit={this.handleSubmit}>
                         <label className="label-icon valign-wrapper">
@@ -69,7 +69,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchDBFood: (query) => {
-            console.log('query in allfoods component', query)
+            // console.log('query in allfoods component', query)
             dispatch(fetchDBFood(query))
         }
     }
