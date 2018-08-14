@@ -1,6 +1,5 @@
 import axios from 'axios'
-import { FoodForm } from '../components';
-import {addMealItem} from '../store'
+import { addMealItem } from '../store'
 
 //ACTION TYPES
 
@@ -69,13 +68,14 @@ export const fetchDBFood = (query) => async dispatch => {
     }
 }
 
-export const postFood = newFood => dispatch => {
+export const postFood = (newFood, mealId) => dispatch => {
+    console.log('correct data in food', mealId)
+    console.log('added food', newFood)
     axios
         .post('/api/food', newFood)
         .then(({ data }) => {
-            console.log('correct data in food', data)
             dispatch(addFood(data))
-            // dispatch(addMealItem({foodId: data.id, mealId: }))
+            dispatch(addMealItem({ foodId: data.id, mealId: mealId }))
             // history.push(`/food/${data.id}`)
         })
         .catch(error => console.error(error))
@@ -88,8 +88,9 @@ export const putFood = food => dispatch => {
             console.log('data in the put requrstl', data)
             dispatch(updateFood(data)
 
-        )})
-        .catch (err => console.error(err))
+            )
+        })
+        .catch(err => console.error(err))
 }
 
 //REDUCER
@@ -111,16 +112,16 @@ export default function (state = initialState, action) {
             }
 
         case ADD_FOOD:
-        console.log('state in add food', state)
+            console.log('state in add food', state)
             return {
                 ...state,
                 byId: { ...state.byId, [action.addedFood.id]: action.addedFood },
                 allIds: [...state.allIds, action.addedFood.id],
             }
         case UPDATE_FOOD:
-        console.log('state in update food', state)
+            console.log('state in update food', state)
             return {
-                ...state, 
+                ...state,
                 byId: {
                     ...state.byId,
                     [action.updatedFood.id]: action.updatedFood

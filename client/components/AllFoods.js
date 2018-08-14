@@ -4,10 +4,12 @@ import {Link} from 'react-router-dom'
 import {postFood} from '../store'
 
 class AllFoods extends Component {
-  submit = addedFood => {
-    const currentMealId = Number(window.location.pathname.split('/')[3])
+  submit = (addedFood, currentMealId) => {
     addedFood.mealId = currentMealId
-    this.props.postFood(addedFood)
+    console.log('added food with meal id', addedFood)
+    console.log('current meal id', currentMealId)
+
+    this.props.postFood(addedFood, currentMealId)
   }
 
   render() {
@@ -36,12 +38,13 @@ class AllFoods extends Component {
       })
     } else {
         console.log('db props', this.props)
+        const currentMealId = Number(window.location.pathname.split('/')[3])
 
       return this.props.dbfoods.hits.map(individualHits => {
         return (
           <div key = {individualHits._id}>
             {individualHits.fields.item_name} 
-            <button className="waves-effect green waves-light btn" onClick = {() => {this.submit(individualHits.fields)}}>
+            <button className="waves-effect green waves-light btn" onClick = {() => {this.submit(individualHits.fields, currentMealId)}}>
                 Add Food
             </button>
           </div>
@@ -61,7 +64,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postFood: newFood => dispatch(postFood(newFood))
+    postFood: (newFood, mealId) => dispatch(postFood(newFood, mealId))
   }
 }
 

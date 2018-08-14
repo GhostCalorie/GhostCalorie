@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {AllFoods} from '../components'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { AllFoods } from '../components'
 
 class AllMeal extends React.Component {
   render() {
@@ -15,11 +15,11 @@ class AllMeal extends React.Component {
             </div>
             <div className="col s12">
               <Link
-                to= {`meal/search/${individualMeal.id}`}
+                to={`meal/search/${individualMeal.id}`}
                 className="waves-effect orange darken-2  waves-light btn"
               >
-                Add Food
-                <i className="material-icons right">add</i>
+                Search For Food
+                <i className="material-icons right">search</i>
               </Link>
             </div>
             <AllFoods mealId={individualMeal.id} />
