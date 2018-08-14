@@ -5,11 +5,11 @@ import {connect} from 'react-redux'
 let FoodForm = props => {
   const {handleSubmit, pristine, submitting} = props
   return (
-    <div>
+    <div className="container">
       <h3>Edit Food</h3>
       <br />
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form className="row" onSubmit={handleSubmit}>
+        <div className="col s12">
         <label htmlFor="brand_name">Name of Brand</label>
           <Field 
           name="brand_name" 
@@ -17,7 +17,7 @@ let FoodForm = props => {
           type="text" 
           />
         </div>
-        <div>
+        <div className="col s12 m6">
         <label htmlFor="item_name">Name</label>
 
           <Field 
@@ -27,7 +27,7 @@ let FoodForm = props => {
           />
           {/* <span className="helper-text">Cannot be empty, must be > 0</span> */}
         </div>
-        <div>
+        <div className="col s12 m6">
         <label htmlFor="nf_calories">Calories</label>
           <Field
             name="nf_calories"
@@ -35,7 +35,7 @@ let FoodForm = props => {
             type="number"
           />
         </div>
-        <div>
+        <div className="col s12 m6">
         <label htmlFor="nf_sodium">Sodium</label>
           <Field
             name="nf_sodium"
@@ -43,7 +43,7 @@ let FoodForm = props => {
             type="number"
           />
         </div>
-        <div>
+        <div className="col s12 m6">
         <label htmlFor="nf_protein">Protein</label>
           <Field
             name="nf_protein"
@@ -51,7 +51,7 @@ let FoodForm = props => {
             type="number"
           />
         </div>
-        <div>
+        <div className="col s12 m6">
         <label htmlFor="nf_sugars">Sugars</label>
           <Field
             name="nf_sugars"
@@ -59,7 +59,7 @@ let FoodForm = props => {
             type="number"
           />
         </div>
-        <div>
+        <div className="col s12 m6">
         <label htmlFor="nf_total_carbohydrate">Total Carbohydrate</label>
           <Field
             name="nf_total_carbohydrate"
@@ -67,7 +67,7 @@ let FoodForm = props => {
             type="number"
           />
         </div>
-        <div>
+        <div className="col s12 m6">
         <label htmlFor="total_fat">Total Fat</label>
           <Field
             name="total_fat"
@@ -75,7 +75,7 @@ let FoodForm = props => {
             type="number"
           />
         </div>
-        <button disabled={pristine || submitting} type="submit">
+        <button className="btn waves-effect waves-light" disabled={pristine || submitting} type="submit">
           Submit
         </button>
       </form>
