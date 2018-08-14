@@ -2,19 +2,37 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Food = db.define('food', {
-  name: {
+  brand_name: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false,
     validate: {
       notEmpty:true
     }
   },
-  calories: {
+  item_name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty:true
+    }
+  },
+  nf_calories: {
     type: Sequelize.INTEGER,
   },
-  description :{
-    type: Sequelize.TEXT
+  nf_sodium: {
+    type: Sequelize.INTEGER,
+  },
+  nf_protein: {
+    type: Sequelize.INTEGER,
+  },
+  nf_sugars: {
+    type: Sequelize.INTEGER,
+  },
+  nf_total_carbohydrate: {
+    type: Sequelize.INTEGER,
+  },
+  total_fat: {
+    type: Sequelize.INTEGER,
   }
 
 })

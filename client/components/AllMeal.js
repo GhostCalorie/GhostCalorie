@@ -4,39 +4,37 @@ import { Link } from 'react-router-dom'
 import { AllFoods } from '../components'
 
 class AllMeal extends React.Component {
-    render() {
-        
-        return (
-            <div>
-                {this.props.meal.map(individualMeal => (
-                    <div key={individualMeal.id} className="collection center-align">
-                        <div className="`collection-item black-text">
-                            {individualMeal.type}: {individualMeal.calories}
-                            <AllFoods mealId={individualMeal.id} />
-
-                        </div>
-                        <div className="col s12">
-                            <Link
-                                to={`meal/search`}
-                                className="waves-effect green darken-2 waves-light btn"
-                            >
-                                Add Food
-                        <i className="material-icons right">add</i>
-                            </Link>
-                        </div>
-                    </div>
-                ))}
+  render() {
+    return (
+      <div>
+        {this.props.meal.map(individualMeal => (
+          <div key={individualMeal.id} className="collection center-align">
+            <div className="flow-text truncate">
+              {individualMeal.type}: {individualMeal.calories} calories
             </div>
-        )
-    }
+            <div className="col s12">
+              <Link
+                to={`meal/search/${individualMeal.id}`}
+                className="waves-effect orange darken-2  waves-light btn"
+              >
+                Search For Food
+                <i className="material-icons right">search</i>
+              </Link>
+
+            </div>
+            <AllFoods mealId={individualMeal.id} />
+          </div>
+        ))}
+      </div>
+    )
+  }
 }
 
-const mapStateToProps = (state) => {
-    console.log('state', state)
-    return {
-        meal: state.meal,
-    }
+const mapStateToProps = state => {
+  return {
+    meal: state.meal
+  }
+
 }
 
 export default connect(mapStateToProps, null)(AllMeal)
-

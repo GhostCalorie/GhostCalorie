@@ -4,6 +4,7 @@ import history from '../history'
 // ACTION TYPES
 
 const GET_MEALITEM = 'GET_MEALITEM'
+const ADD_MEALITEM = 'ADD_MEALITEM'
 
 /**
  * INITIAL STATE
@@ -29,6 +30,13 @@ const gotMealItem = mealItems => {
   }
 }
 
+export const addMealItem = addedMealItems => {
+  return {
+    type: ADD_MEALITEM,
+    addedMealItems
+  }
+}
+
 // THUNK CREATORS
 
 export const getMealItems = () => dispatch => {
@@ -42,10 +50,11 @@ export const getMealItems = () => dispatch => {
 
 // REDUCER
 
-export default function(state = defaultMealItem, action) {
+export default function (state = defaultMealItem, action) {
   switch (action.type) {
     case GET_MEALITEM:
-      const newState = {...state, 
+      const newState = {
+        ...state,
         byId: action.mealItems.reduce((result, mealItem) => {
           result[mealItem.id] = mealItem
           return result
@@ -53,6 +62,13 @@ export default function(state = defaultMealItem, action) {
         allIds: action.mealItems.map(mealItem => mealItem.id)
       }
       return newState;
+    case ADD_MEALITEM:
+    console.log('in the add meeal item')
+    return {
+        ...state,
+        byId: { ...state.byId, [action.addedMealItems.id]: action.addedMealItems },
+        allIds: [...state.allIds, action.addedMealItems.id],
+      }
     default:
       return state
   }

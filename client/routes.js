@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { withRouter, Route, Switch } from 'react-router-dom'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
   Login,
@@ -9,11 +9,12 @@ import {
   Search,
   AllFoods,
   AllMeal,
+  AddFood,
+  EditFood,
   CalorieTracker,
   Days
 } from './components'
-import { me, fetchFood, getMeals, getMealItems } from './store'
-
+import {me, fetchFood, getMeals, getMealItems, fetchDBFood} from './store'
 
 /**
  * COMPONENT
@@ -27,28 +28,26 @@ class Routes extends Component {
     const {isLoggedIn} = this.props
 
     return (
+      // <Switch>
+      //   {/* Routes placed here are only available after logging in */}
+      //   <Route path="/login" component={Login} />
+      //   <Route path="/signup" component={Signup} />
+      //   {isLoggedIn && (
       <Switch>
-        {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        {isLoggedIn && (
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            {/* <Route exact path="/" component={AllMeals} /> */}
-            
-      {/* Displays our Login component as a fallback */}
-            <Route exact path="/meal/search" component={Search} />
-            <Route exact path="/calorie" component={CalorieTracker} />
-            <Route exact path="/days" component={Days} />
-            <Route path="/" component={AllMeal} />
-            
-            
-
-          </Switch>
-        )}
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        // {/* Routes placed here are only available after logging in */}
+        // {/* Displays our Login component as a fallback */}
+        <Route exact path="/" component={AllMeal} />
+        <Route path="/meal/search/:mealId" component={Search} />
+        <Route path="/calorie" component={CalorieTracker} />
+        <Route path="/days" component={Days} />
+        // {/* Displays our Login component as a fallback */}
+        <Route path="/food/:foodId/add" component={AddFood} />
+        <Route path="/food/:foodId/edit" component={EditFood} />
       </Switch>
+      //   )}
+      //    {/* Displays our Login component as a fallback */}
+      //    {/* <Route component={Login} /> */}
+      // </Switch>
     )
   }
 }
@@ -70,6 +69,7 @@ const mapDispatch = dispatch => {
       await dispatch(me())
       await dispatch(getMeals())
       await dispatch(fetchFood())
+      await dispatch(fetchDBFood())
       await dispatch(getMealItems())
     }
   }

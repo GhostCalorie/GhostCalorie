@@ -7,8 +7,17 @@ import meal from './meal'
 import foods from './foods'
 import mealItem from './mealitem'
 import days from './days'
+import {reducer as formReducer} from 'redux-form'
 
-const reducer = combineReducers({user, foods, meal, mealItem, days})
+const reducer = combineReducers({
+  user, 
+  foods, 
+  meal, 
+  mealItem,
+  days,
+  form: formReducer
+})
+
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

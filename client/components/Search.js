@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { AllFoods } from '../components'
-import {Link} from 'react-router-dom'
-import {fetchDBFood} from '../store'
+import { Link } from 'react-router-dom'
+import { fetchDBFood } from '../store'
 
 class Search extends Component {
-
     constructor() {
         super()
         this.state = {
@@ -20,16 +19,13 @@ class Search extends Component {
         this.props.fetchDBFood(evt.target.value)
     }
 
-    handleSubmit = evt => {
-        evt.preventDefault()
-    }
-
     render() {
+        console.log("in the search componentn")
         return (
             <div>
                 {/* {console.log('in the search component', this.props)} */}
                 <div className="col s12 l3 z-depth-2">
-                    <form onSubmit={this.handleSubmit}>
+                    <form>
                         <label className="label-icon valign-wrapper">
                             <i className="material-icons">search</i> Search
                         </label>
@@ -62,7 +58,7 @@ class Search extends Component {
 const mapStateToProps = (state) => {
     return {
         dbfoods: state.dbfoods,
-        food: state.foods
+        food: state.foods,
     }
 }
 
