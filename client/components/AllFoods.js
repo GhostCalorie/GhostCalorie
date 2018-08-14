@@ -6,8 +6,6 @@ import {postFood} from '../store'
 class AllFoods extends Component {
   submit = (addedFood, currentMealId) => {
     addedFood.mealId = currentMealId
-    console.log('added food with meal id', addedFood)
-    console.log('current meal id', currentMealId)
 
     this.props.postFood(addedFood, currentMealId)
   }

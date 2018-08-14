@@ -5,7 +5,6 @@ import {AllFoods} from '../components'
 
 class AllMeal extends React.Component {
   render() {
-    console.log('in the meal component', this.props)
     return (
       <div className="container">
         <div className="row">
@@ -26,6 +25,7 @@ class AllMeal extends React.Component {
                 <AllFoods mealId={individualMeal.id} />
               </div>
             ))}
+
           </div>
         </div>
       </div>
@@ -37,6 +37,7 @@ const mapStateToProps = state => {
   return {
     meal: state.meal
   }
+
 }
 
 export default connect(mapStateToProps, null)(AllMeal)
