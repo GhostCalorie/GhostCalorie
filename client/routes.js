@@ -9,7 +9,6 @@ import {
   Search,
   AllFoods,
   AllMeal,
-  AddFood,
   EditFood,
   CalorieTracker,
   Days
@@ -41,7 +40,6 @@ class Routes extends Component {
         <Route path="/calorie" component={CalorieTracker} />
         <Route path="/days" component={Days} />
         // {/* Displays our Login component as a fallback */}
-        <Route path="/food/:foodId/add" component={AddFood} />
         <Route path="/food/:foodId/edit" component={EditFood} />
       </Switch>
       //   )}
