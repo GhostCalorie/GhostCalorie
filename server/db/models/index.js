@@ -16,6 +16,7 @@ const MealItem = require('./mealItem')
 Day.hasMany(Meal)
 Meal.belongsTo(Day)
 
+// We could choose to store Foods in a non-duplicating manner 🧙‍♂️
 Food.belongsToMany(Meal, {through : MealItem})
 Meal.belongsToMany(Food, {through : MealItem})
 
