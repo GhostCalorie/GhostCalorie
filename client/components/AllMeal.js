@@ -1,30 +1,33 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { AllFoods } from '../components'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {AllFoods} from '../components'
 
 class AllMeal extends React.Component {
   render() {
     return (
-      <div>
-        {this.props.meal.map(individualMeal => (
-          <div key={individualMeal.id} className="collection center-align">
-            <div className="flow-text truncate">
-              {individualMeal.type}: {individualMeal.calories} calories
-            </div>
-            <div className="col s12">
-              <Link
-                to={`meal/search/${individualMeal.id}`}
-                className="waves-effect orange darken-2  waves-light btn"
-              >
-                Search For Food
-                <i className="material-icons right">search</i>
-              </Link>
+      <div className="container">
+        <div className="row">
+          <div className="col s12 m6 push-m3 center-align">
+            {this.props.meal.map(individualMeal => (
+              <div key={individualMeal.id} className="collection center-align">
+                <div className="flow-text truncate collection-item black-text">
+                  {individualMeal.type}: {individualMeal.calories} calories
+                  <Link
+                    to={`meal/search/${individualMeal.id}`}
+                    className="waves-effect orange darken-2 left waves-light btn"
+                  >
+                    Search Food
+                    <i className="material-icons right">search</i>
+                  </Link>
+                </div>
 
-            </div>
-            <AllFoods mealId={individualMeal.id} />
+                <AllFoods mealId={individualMeal.id} />
+              </div>
+            ))}
+
           </div>
-        ))}
+        </div>
       </div>
     )
   }

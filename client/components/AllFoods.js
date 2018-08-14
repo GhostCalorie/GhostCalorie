@@ -38,9 +38,10 @@ class AllFoods extends Component {
         console.log('db props', this.props)
         const currentMealId = Number(window.location.pathname.split('/')[3])
 
+        
       return this.props.dbfoods.hits.map(individualHits => {
         return (
-          <div key = {individualHits._id}>
+          <div key = {individualHits._id} className="collection center-align">
             {individualHits.fields.item_name} 
             <button className="waves-effect green waves-light btn" onClick = {() => {this.submit(individualHits.fields, currentMealId)}}>
                 Add Food
@@ -48,6 +49,7 @@ class AllFoods extends Component {
           </div>
         )
       })
+      
     }
   }
 }

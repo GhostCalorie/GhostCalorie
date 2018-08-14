@@ -9,7 +9,6 @@ import {
   Search,
   AllFoods,
   AllMeal,
-  AddFood,
   EditFood,
   CalorieTracker,
   Days
@@ -28,11 +27,11 @@ class Routes extends Component {
     const {isLoggedIn} = this.props
 
     return (
-      // <Switch>
-      //   {/* Routes placed here are only available after logging in */}
-      //   <Route path="/login" component={Login} />
-      //   <Route path="/signup" component={Signup} />
-      //   {isLoggedIn && (
+      <Switch>
+        {/* Routes placed here are only available after logging in */}
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        {isLoggedIn && (
       <Switch>
         // {/* Routes placed here are only available after logging in */}
         // {/* Displays our Login component as a fallback */}
@@ -41,13 +40,12 @@ class Routes extends Component {
         <Route path="/calorie" component={CalorieTracker} />
         <Route path="/days" component={Days} />
         // {/* Displays our Login component as a fallback */}
-        <Route path="/food/:foodId/add" component={AddFood} />
         <Route path="/food/:foodId/edit" component={EditFood} />
       </Switch>
-      //   )}
-      //    {/* Displays our Login component as a fallback */}
-      //    {/* <Route component={Login} /> */}
-      // </Switch>
+        )}
+         {/* Displays our Login component as a fallback */}
+         {/* <Route component={Login} /> */}
+      </Switch>
     )
   }
 }
