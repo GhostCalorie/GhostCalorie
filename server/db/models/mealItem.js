@@ -5,7 +5,7 @@ const Food = require('./foods')
 
 
 const MealItem = db.define('mealItem', {
-
+  // Is this necessary? 🤷‍♀️
   id: {
     autoIncrement: true,
     primaryKey: true,

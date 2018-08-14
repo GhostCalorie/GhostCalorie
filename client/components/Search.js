@@ -11,7 +11,7 @@ class Search extends Component {
             food: ''
         }
     }
-
+    // Consider throttling or debouncing here ⏩
     handleChange = evt => {
         this.setState({
             [evt.target.name]: evt.target.value
