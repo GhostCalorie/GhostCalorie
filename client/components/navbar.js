@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
+
 const LoggedInLinks = props => (
   <span>
     <li>
@@ -27,11 +28,20 @@ const LoggedOutLinks = props => (
     <li>
       <Link to="/signup">Sign Up</Link>
     </li>
+
   </span>
 )
 
 const Navbar = props => (
   <div>
+
+    <ul id="dropdown1" className="dropdown-content">
+      <li><a href="#!">one</a></li>
+      <li><a href="#!">two</a></li>
+      <li className="divider"></li>
+      <li><a href="#!">three</a></li>
+    </ul>
+
     <nav className="green" role="navigation">
       <div className="nav-wrapper container">
         <Link to="/" className="brand-logo logo-container">
