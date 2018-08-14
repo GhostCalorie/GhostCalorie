@@ -5,7 +5,6 @@ import { AllFoods } from '../components'
 
 class AllMeal extends React.Component {
   render() {
-    console.log('in the meal component', this.props)
     return (
       <div>
         {this.props.meal.map(individualMeal => (
@@ -21,6 +20,7 @@ class AllMeal extends React.Component {
                 Search For Food
                 <i className="material-icons right">search</i>
               </Link>
+
             </div>
             <AllFoods mealId={individualMeal.id} />
           </div>
@@ -34,6 +34,7 @@ const mapStateToProps = state => {
   return {
     meal: state.meal
   }
+
 }
 
 export default connect(mapStateToProps, null)(AllMeal)
