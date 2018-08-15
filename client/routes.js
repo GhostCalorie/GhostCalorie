@@ -10,6 +10,7 @@ import {
   AllFoods,
   AllMeal,
   EditFood,
+  AddFood,
   CalorieTracker,
   Days
 } from './components'
@@ -40,6 +41,7 @@ class Routes extends Component {
         <Route path="/calorie" component={CalorieTracker} />
         <Route path="/days" component={Days} />
         // {/* Displays our Login component as a fallback */}
+        <Route path="/food/:mealId/:foodId/add" component={AddFood} />
         <Route path="/food/:foodId/edit" component={EditFood} />
       </Switch>
         )}
