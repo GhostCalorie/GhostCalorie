@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { AllFoods } from '../components'
 import { Link } from 'react-router-dom'
 import { fetchDBFood } from '../store'
-import {debounce} from 'lodash'
+import { debounce } from 'lodash'
 
 class Search extends Component {
     constructor() {
@@ -11,13 +11,19 @@ class Search extends Component {
         this.state = {
             food: ''
         }
+        // console.log('this', this)
+        // this.fetchDBFood = debounce(this.props.fetchDBFood, 250)
     }
 
     handleChange = evt => {
-        this.setState({
-            [evt.target.name]: evt.target.value
-        })
-        ._debounce(() => this.props.fetchDBFood(evt.target.value), 10)
+        const val = evt.target.value
+        this.setState({ [evt.target.name]: val },
+            //      () => {
+            //         this.fetchDBFood(val)
+            // }
+        )
+        
+
     }
 
     render() {
