@@ -8,7 +8,7 @@ import {logout} from '../store'
 const LoggedInLinks = props => (
   <span>
     <li>
-      <Link to="/home">Home</Link>
+      <Link to="/">Home</Link>
     </li>
     <li>
       <a href="#" onClick={props.handleClick}>
