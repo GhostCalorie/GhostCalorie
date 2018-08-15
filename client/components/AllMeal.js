@@ -1,7 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {AllFoods} from '../components'
+import {AllFoods, CalorieGraph} from '../components'
+
 
 class AllMeal extends React.Component {
   render() {
@@ -28,6 +29,7 @@ class AllMeal extends React.Component {
 
           </div>
         </div>
+        <CalorieGraph/>
       </div>
     )
   }

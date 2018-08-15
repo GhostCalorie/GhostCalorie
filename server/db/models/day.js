@@ -24,10 +24,10 @@ const Day = db.define('day', {
 
 const setMeals = async day => {
   const mealArr = await Promise.all([
-    Meal.create({type: 'Breakfast'}),
-    Meal.create({type: 'Lunch'}),
-    Meal.create({type: 'Dinner'}),
-    Meal.create({type: 'Snacks'})])
+    Meal.create({type: 'Breakfast', createdAtString: day.createdAtString}),
+    Meal.create({type: 'Lunch', createdAtString: day.createdAtString}),
+    Meal.create({type: 'Dinner', createdAtString: day.createdAtString}),
+    Meal.create({type: 'Snacks', createdAtString: day.createdAtString})])
 
   await day.setMeals(mealArr)
 
