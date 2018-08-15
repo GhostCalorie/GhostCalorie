@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 
 let FoodForm = props => {
   const {handleSubmit, pristine, submitting} = props
-  console.log('initial value for add', props.initialValues)
   return (
     <div className="container">
       <h3>Add/Edit Food</h3>
