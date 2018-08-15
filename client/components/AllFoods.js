@@ -62,11 +62,12 @@ class AllFoods extends Component {
 }
 
 const mapStateToProps = state => {
-    return {
-        state,
-        foods: state.foods,
-        mealItems: state.mealItems
-    }
+
+  return {
+    state,
+    foods: state.foods,
+    mealItems: state.mealItems
+  }
 }
 
 const mapDispatchToProps = dispatch => {

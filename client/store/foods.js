@@ -59,9 +59,7 @@ export const fetchFood = () => async dispatch => {
 
 export const fetchDBFood = (query) => async dispatch => {
     try {
-        console.log('storequery', query)
         let res = await axios.post('/api/food/nutritionix', { query })
-        console.log('resdata', res.data)
         dispatch(getDBFood(res.data))
     } catch (err) {
         return dispatch(getDBFood({ error: err.message }))
@@ -69,8 +67,6 @@ export const fetchDBFood = (query) => async dispatch => {
 }
 
 export const postFood = (newFood, mealId) => dispatch => {
-    console.log('correct data in food', mealId)
-    console.log('added food', newFood)
     axios
         .post('/api/food', newFood)
         .then(({ data }) => {
@@ -85,7 +81,6 @@ export const putFood = food => dispatch => {
     axios
         .put(`/api/food/${food.id}`, food)
         .then(({ data }) => {
-            console.log('data in the put requrstl', data)
             dispatch(updateFood(data)
 
             )
@@ -112,14 +107,12 @@ export default function (state = initialState, action) {
             }
 
         case ADD_FOOD:
-            console.log('state in add food', state)
             return {
                 ...state,
                 byId: { ...state.byId, [action.addedFood.id]: action.addedFood },
                 allIds: [...state.allIds, action.addedFood.id],
             }
         case UPDATE_FOOD:
-            console.log('state in update food', state)
             return {
                 ...state,
                 byId: {
