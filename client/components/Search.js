@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { AllFoods } from '../components'
 import { Link } from 'react-router-dom'
 import { fetchDBFood } from '../store'
-import {debounce} from './lodash'
+import {debounce} from 'lodash'
 
 class Search extends Component {
     constructor() {
@@ -17,7 +17,7 @@ class Search extends Component {
         this.setState({
             [evt.target.name]: evt.target.value
         })
-        debounce(this.props.fetchDBFood(evt.target.value), 500)
+        ._debounce(() => this.props.fetchDBFood(evt.target.value), 10)
     }
 
     render() {
