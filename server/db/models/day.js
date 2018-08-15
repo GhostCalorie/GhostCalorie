@@ -16,6 +16,11 @@ const Day = db.define('day', {
     type: Sequelize.STRING,
     defaultValue: moment().format('YYYY[-]MM[-]DD')
 
+  },
+
+  date: {
+    type: Sequelize.STRING,
+    defaultValue: moment().format('DD')
   }
 
 })

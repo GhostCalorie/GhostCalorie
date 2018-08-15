@@ -15,9 +15,34 @@ async function seed() {
   const usr = await  User.create({name: 'bob', startingWeight: 276, weightGoal: 250, email: 'bobby@email.com', password: '123'})
 
 
+  
+  const madeDays = await Promise.all(
+    [
+      Day.create({
+      calories: 2300, 
+      description: 'I ate snickers',
+      createdAtString: '2018-08-14',
+      date: '14'
+      }),
+      Day.create({
+      calories: 1500, 
+      description: 'I ate mars bar',
+      createdAtString: '2018-08-15',
+      date: '15'
+      }), 
+      Day.create({
+      calories: 1900, 
+      description: 'I ate twix',
+      createdAtString: '2018-08-16',
+      date: '16'
+      })
+    ]
+  )
 
-  const day = await Day.create()
-  usr.addDay(day)
+  madeDays.map(elem => {
+    usr.addDay(elem)
+  })
+  
 
   const foods = await Promise.all(
     [
