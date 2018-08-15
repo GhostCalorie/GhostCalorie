@@ -9,7 +9,7 @@ class AllMeal extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col s12 m6 push-m3 center-align">
-            {this.props.meal.map(individualMeal => (
+            {this.props.meals.map(individualMeal => (
               <div key={individualMeal.id} className="collection center-align">
                 <div className="flow-text truncate collection-item black-text">
                   {individualMeal.type}: {individualMeal.calories} calories
@@ -35,7 +35,7 @@ class AllMeal extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    meal: state.meal
+    meals: state.meals
   }
 
 }

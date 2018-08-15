@@ -65,7 +65,7 @@ const mapStateToProps = state => {
     return {
         state,
         foods: state.foods,
-        mealItems: state.mealItem
+        mealItems: state.mealItems
     }
 }
 

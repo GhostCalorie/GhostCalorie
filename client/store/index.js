@@ -12,8 +12,8 @@ import {reducer as formReducer} from 'redux-form'
 const reducer = combineReducers({
   user, 
   foods, 
-  meal, 
-  mealItem,
+  meals, 
+  mealItems,
   days,
   form: formReducer
 })
