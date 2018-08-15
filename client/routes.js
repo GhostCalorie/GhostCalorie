@@ -14,7 +14,8 @@ import {
   CalorieTracker,
   Days
 } from './components'
-import {me, fetchFood, getMeals, getMealItems, fetchDBFood} from './store'
+import {me, fetchFood, getMeals, getMealItems, fetchDBFood, fetchDay} from './store'
+import meal from './store/meal';
 
 /**
  * COMPONENT
@@ -45,10 +46,9 @@ class Routes extends Component {
       <Switch>
         // {/* Routes placed here are only available after logging in */}
         // {/* Displays our Login component as a fallback */}
-        <Route exact path="/" component={AllMeal} />
+        <Route exact path="/" component={Days} />
         <Route path="/meal/search/:mealId" component={Search} />
-        <Route path="/calorie" component={CalorieTracker} />
-        <Route path="/days" component={Days} />
+        <Route path="/meal" component={AllMeal} />
         // {/* Displays our Login component as a fallback */}
         <Route path="/food/:mealId/:foodId/add" component={AddFood} />
         <Route path="/food/:foodId/edit" component={EditFood} />
@@ -68,7 +68,9 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user.id,
+
   }
 }
 

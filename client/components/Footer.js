@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom'
 const Links = () => (
   <span>
     <li className="grey-text text-lighten-4 left">
-      <Link to="/calorie" className="brand-logo logo-container">
+      <Link to="/" className="brand-logo logo-container">
         <i className="material-icons">wb_sunny</i>
         <span className="flow-text truncate"> My Day </span>
       </Link>{' '}
     </li>
     <li className="grey-text text-lighten-4 center">
-      <Link to="/" className="brand-logo logo-container">
+      <Link to="/meal" className="brand-logo logo-container">
         <i className="material-icons">developer_board</i>
         <span className="flow-text truncate"> Log </span>
       </Link>{' '}
