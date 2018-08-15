@@ -1,5 +1,5 @@
 import React from 'react'
-import {FoodForm} from '../components'
+import {EditFormField} from '../components'
 import {putFood} from '../store'
 import {connect} from 'react-redux'
 
@@ -9,7 +9,7 @@ class EditFood extends React.Component {
     this.props.history.push(`/`)
   }
   render() {
-    return <FoodForm {...this.props} onSubmit={this.submit} />
+    return <EditFormField {...this.props} onSubmit={this.submit} />
   }
 }
 
