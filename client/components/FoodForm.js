@@ -4,9 +4,10 @@ import {connect} from 'react-redux'
 
 let FoodForm = props => {
   const {handleSubmit, pristine, submitting} = props
+  console.log('initial value for add', props.initialValues)
   return (
     <div className="container">
-      <h3>Edit Food</h3>
+      <h3>Add/Edit Food</h3>
       <br />
       <form className="row" onSubmit={handleSubmit}>
         <div className="col s12">
@@ -75,7 +76,7 @@ let FoodForm = props => {
             type="number"
           />
         </div>
-        <button className="btn waves-effect waves-light" disabled={pristine || submitting} type="submit">
+        <button className="btn waves-effect waves-light" type="submit">
           Submit
         </button>
       </form>
@@ -94,13 +95,19 @@ let FoodForm = props => {
 
 const mapDispatchToProps = dispatch => ({})
 
-const mapStateToProps = (state, {match}) => ({
+const mapEdit = (state, {match}) => ({
   // This `initialValues` variable name below is required by redux-forms
   //only for edit, if there is a id in the url
   initialValues: state.foods.byId[match.params.foodId],
 })
 
-FoodForm = reduxForm({form: 'foodForm'})(FoodForm)
-FoodForm = connect(mapStateToProps, mapDispatchToProps)(FoodForm)
+const mapAdd = (state, {match}) => ({
+  // This `initialValues` variable name below is required by redux-forms
+  //only for edit, if there is a id in the url
+  initialValues: state.foods.dbfoods.hits[match.params.foodId].fields,
+})
 
-export default FoodForm
+FoodForm = reduxForm({form: 'foodForm'})(FoodForm)
+export const AddFormField = connect(mapAdd, mapDispatchToProps)(FoodForm)
+export const EditFormField = connect(mapEdit, mapDispatchToProps)(FoodForm)
+
