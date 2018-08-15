@@ -22,7 +22,7 @@ class Days extends Component {
     //     this.setState({
     //         [evt.target.name]: evt.target.value
     //     })
-        
+
     // }
 
     // handleSubmit = evt => {
@@ -30,21 +30,22 @@ class Days extends Component {
     // }
 
     handleDayClick = (day) => {
+      console.log(day)
         for (let i=0; i < this.props.day.days.length; i++){
             if(day.getDate() == this.props.day.days[i].date){
                 this.setState({myDay: this.props.day.days[i]})
             }
         }
-        
+
         this.setState({selectedDay: day})
-        
+
     }
 
     render() {
         return (
             <div>
-                <DayPicker 
-                onDayClick={this.handleDayClick} 
+                <DayPicker
+                onDayClick={this.handleDayClick}
                 selectedDays={this.state.selectedDay}
                 />
                 {this.state.selectedDay ?  (

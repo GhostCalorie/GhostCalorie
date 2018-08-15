@@ -16,12 +16,8 @@ const Day = db.define('day', {
     type: Sequelize.STRING,
     defaultValue: moment().format('YYYY[-]MM[-]DD')
 
-  },
-
-  date: {
-    type: Sequelize.STRING,
-    defaultValue: moment().format('DD')
   }
+
 
 })
 
@@ -36,7 +32,17 @@ const setMeals = async day => {
   await day.setMeals(mealArr)
 
 
+  for (let i = 55; i <= 62; i++) {
+    const day = await Day.findOne({where: {id: i}, include: [Meal]})
+    day.dataValues.meals.forEach(async (meal) => {
+      let calories = Math.ceil(Math.random() * 500)
+      await meal.update({calories: calories})
+
+
+    })
+  }
 }
+
 
 Day.afterCreate(setMeals)
 
