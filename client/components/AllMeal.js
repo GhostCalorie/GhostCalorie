@@ -35,7 +35,7 @@ class AllMeal extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    meal: state.meal
+    meal: state.meals
   }
 
 }

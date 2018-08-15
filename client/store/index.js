@@ -3,17 +3,17 @@ import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
-import meal from './meal'
+import meals from './meal'
 import foods from './foods'
-import mealItem from './mealitem'
+import mealItems from './mealitem'
 import days from './days'
 import {reducer as formReducer} from 'redux-form'
 
 const reducer = combineReducers({
   user, 
   foods, 
-  meal, 
-  mealItem,
+  meals, 
+  mealItems,
   days,
   form: formReducer
 })

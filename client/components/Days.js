@@ -1,42 +1,71 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
-import {postDay, me, fetchDay} from '../store'
+import { me, fetchDay} from '../store'
+import DayPicker from 'react-day-picker'
+import 'react-day-picker/lib/style.css'
 
 class Days extends Component {
-    // constructor() {
-    //     super()
-    //     this.state = {
-    //         calories: '',
-    //         description: ''
-    //     }
-    // }
+    constructor() {
+        super()
+        this.state = {
+            selectedDay: undefined,
+            myDay: {}
+        }
+    }
 
     componentDidMount() {
         this.props.getUser()
         this.props.fetchDay(this.props.user)
     }
 
-    handleChange = evt => {
-        this.setState({
-            [evt.target.name]: evt.target.value
-        })
+    // handleChange = evt => {
+    //     this.setState({
+    //         [evt.target.name]: evt.target.value
+    //     })
         
-    }
+    // }
 
-    handleSubmit = evt => {
-        evt.preventDefault()
+    // handleSubmit = evt => {
+    //     evt.preventDefault()
+    // }
+
+    handleDayClick = (day) => {
+        for (let i=0; i < this.props.day.days.length; i++){
+            if(day.getDate() == this.props.day.days[i].date){
+                this.setState({myDay: this.props.day.days[i]})
+            }
+        }
+        
+        this.setState({selectedDay: day})
+        
     }
 
     render() {
         return (
-            <h1> DAY METRICS GO HERE </h1>
+            <div>
+                <DayPicker 
+                onDayClick={this.handleDayClick} 
+                selectedDays={this.state.selectedDay}
+                />
+                {this.state.selectedDay ?  (
+                    <div>
+                        <p>You clicked {this.state.selectedDay.toLocaleDateString()}</p>
+                        <h1> {this.state.myDay.createdAtString}</h1>
+                        <h1> {this.state.myDay.calories} </h1>
+                        <h1> {this.state.myDay.description}</h1>
+                    </div>
+                ) : (
+                <p>Please select a day.</p>
+                )}
+            </div>
         )
     }
 }
 
 const mapStateToProps = state => {
     return {
-        user: state.user.id
+        user: state.user.id,
+        day: state.days
     }
 }
 
