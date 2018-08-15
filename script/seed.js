@@ -15,108 +15,139 @@ async function seed() {
   const usr = await  User.create({name: 'bob', startingWeight: 276, weightGoal: 250, email: 'bobby@email.com', password: '123'})
 
 
-  
+
   const madeDays = await Promise.all(
     [
       Day.create({
-      calories: 2300, 
-      description: 'I ate snickers',
-      createdAtString: '2018-08-14',
-      date: '14'
+        id: 55,
+        description: 'I ate snickers',
+        createdAtString: '2018-08-08',
+        date: '14'
       }),
       Day.create({
-      calories: 1500, 
-      description: 'I ate mars bar',
-      createdAtString: '2018-08-15',
-      date: '15'
-      }), 
+        id: 56,
+        description: 'I ate mars bar',
+        createdAtString: '2018-08-09',
+        date: '15'
+      }),
       Day.create({
-      calories: 1900, 
-      description: 'I ate twix',
-      createdAtString: '2018-08-16',
-      date: '16'
+        id: 57,
+        description: 'I ate twix',
+        createdAtString: '2018-08-10',
+        date: '16'
+      }),
+      Day.create({
+        id: 58,
+        description: 'I ate snickers',
+        createdAtString: '2018-08-11',
+        date: '14'
+      }),
+      Day.create({
+        id: 59,
+        description: 'I ate mars bar',
+        createdAtString: '2018-08-12',
+        date: '15'
+      }),
+      Day.create({
+        id: 60,
+        description: 'I ate twix',
+        createdAtString: '2018-08-13',
+        date: '16'
+      }),
+      Day.create({
+        id: 61,
+        description: 'I ate mars bar',
+        createdAtString: '2018-08-14',
+        date: '15'
+      }),
+      Day.create({
+        id: 62,
+        description: 'I ate mars bar',
+        createdAtString: '2018-08-15',
+        date: '15'
       })
+
     ]
   )
 
   madeDays.map(elem => {
     usr.addDay(elem)
   })
-  
+
 
   const foods = await Promise.all(
     [
-    Food.create({
-      brand_name: 'Whole Foods',
-      item_name: 'pasta',
-      nf_calories: 50,
-      nf_sodium: 20,
-      nf_protein: 10,
-      nf_sugars: 15,
-      nf_total_carbohydrate: 5,
-      total_fat: 6
-    }),
-    Food.create({
-      brand_name: '360',
-      item_name: 'meat',
-      nf_calories: 50,
-      nf_sodium: 20,
-      nf_protein: 10,
-      nf_sugars: 15,
-      nf_total_carbohydrate: 5,
-      total_fat: 6
-    }),
-    Food.create({
-      brand_name: 'kraft',
-      item_name: 'cheese',
-      nf_calories: 50,
-      nf_sodium: 20,
-      nf_protein: 10,
-      nf_sugars: 15,
-      nf_total_carbohydrate: 5,
-      total_fat: 6
-    }),
-    Food.create({
-      brand_name: 'rolo',
-      item_name: 'chocolate',
-      nf_calories: 50,
-      nf_sodium: 20,
-      nf_protein: 10,
-      nf_sugars: 15,
-      nf_total_carbohydrate: 5,
-      total_fat: 6
-    })
-  ]
-)
+      Food.create({
+        brand_name: 'Whole Foods',
+        item_name: 'pasta',
+        nf_calories: 50,
+        nf_sodium: 20,
+        nf_protein: 10,
+        nf_sugars: 15,
+        nf_total_carbohydrate: 5,
+        total_fat: 6
+      }),
+      Food.create({
+        brand_name: '360',
+        item_name: 'meat',
+        nf_calories: 50,
+        nf_sodium: 20,
+        nf_protein: 10,
+        nf_sugars: 15,
+        nf_total_carbohydrate: 5,
+        total_fat: 6
+      }),
+      Food.create({
+        brand_name: 'kraft',
+        item_name: 'cheese',
+        nf_calories: 50,
+        nf_sodium: 20,
+        nf_protein: 10,
+        nf_sugars: 15,
+        nf_total_carbohydrate: 5,
+        total_fat: 6
+      }),
+      Food.create({
+        brand_name: 'rolo',
+        item_name: 'chocolate',
+        nf_calories: 50,
+        nf_sodium: 20,
+        nf_protein: 10,
+        nf_sugars: 15,
+        nf_total_carbohydrate: 5,
+        total_fat: 6
+      })
+    ]
+  )
 
-const mealItems = await Promise.all(
-  [
-  MealItem.create({
+  const mealItems = await Promise.all(
+    [
+      MealItem.create({
 
-    quantity: 5,
-    mealId: 1,
-    foodId: 1
-  }),
-  MealItem.create({
+        quantity: 5,
+        mealId: 1,
+        foodId: 1
+      }),
+      MealItem.create({
 
-    quantity: 10,
-    mealId: 1,
-    foodId: 2
-  }),
-  MealItem.create({
+        quantity: 10,
+        mealId: 1,
+        foodId: 2
+      }),
+      MealItem.create({
 
-    quantity: 15,
-    mealId: 2,
-    foodId: 3
-  }),
-  MealItem.create({
+        quantity: 15,
+        mealId: 2,
+        foodId: 3
+      }),
+      MealItem.create({
 
-    quantity: 25,
-    mealId: 3,
-    foodId: 4
-  }),
-]
-)
+        quantity: 25,
+        mealId: 3,
+        foodId: 4
+      }),
+    ]
+  )
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${foods.length} foods`)
@@ -136,7 +167,10 @@ async function runSeed() {
     process.exitCode = 1
   } finally {
     console.log('closing db connection')
+
     await db.close()
+
+
     console.log('db connection closed')
   }
 }

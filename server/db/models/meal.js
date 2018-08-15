@@ -14,6 +14,10 @@ const Meal = db.define('meal', {
   },
   description :{
     type: Sequelize.TEXT
+  },
+  createdAtString  :{
+    type: Sequelize.TEXT
+
   }
 
 })
