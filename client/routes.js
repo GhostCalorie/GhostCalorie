@@ -12,7 +12,9 @@ import {
   EditFood,
   AddFood,
   CalorieTracker,
-  Days
+  Days,
+
+  Reports
 } from './components'
 import {me, fetchFood, getMeals, getMealItems, fetchDBFood} from './store'
 
@@ -49,6 +51,8 @@ class Routes extends Component {
         <Route path="/meal/search/:mealId" component={Search} />
         <Route path="/calorie" component={CalorieTracker} />
         <Route path="/days" component={Days} />
+        <Route path="/reports" component={Reports} />
+
         // {/* Displays our Login component as a fallback */}
         <Route path="/food/:mealId/:foodId/add" component={AddFood} />
         <Route path="/food/:foodId/edit" component={EditFood} />

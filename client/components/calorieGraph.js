@@ -66,16 +66,7 @@ const groupByMeal = daysToGraph => {
 }
 
 
-const getBarData = () => {
-  return ['breakfast', 'lunch', 'dinner', 'snack'].map(() => {
-    return [
-      {x: 'day1', y: Math.random(), z: 'dicks'},
-      {x: 'day2', y: Math.random()},
-      {x: 'day3', y: Math.random()},
-      {x: 'day4', y: Math.random()}
-    ]
-  })
-}
+
 
 
 export default connect(mapState)(CalorieGraph)

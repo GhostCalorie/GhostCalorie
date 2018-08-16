@@ -14,5 +14,7 @@ export {default as Search} from './Search'
 export {default as CalorieTracker} from './CalorieTracker'
 export {default as Days} from './Days'
 export {default as CalorieGraph} from './calorieGraph'
+export {default as Reports} from './reports'
+
 
 export {Login, Signup} from './auth-form'

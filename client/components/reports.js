@@ -5,6 +5,8 @@ import DayPicker from 'react-day-picker'
 import 'react-day-picker/lib/style.css'
 import moment from 'moment'
 import CalorieGraph from './calorieGraph'
+import MacroGraph from './macroGraph'
+
 
 class Days extends Component {
   constructor() {
@@ -19,7 +21,7 @@ class Days extends Component {
 
   getDaysInRange(dayAmt) {
     let datesToFilter = {}
-    for (let i = dayAmt - 1; i >= 0; i--) {
+    for (let i = dayAmt ; i >= 0; i--) {
       const mmt = moment().subtract(i, 'days').format('YYYY[-]MM[-]DD')
       datesToFilter[mmt] = true
 
@@ -45,36 +47,15 @@ class Days extends Component {
   //     evt.preventDefault()
   // }
 
-  handleDayClick = (day) => {
-    for (let i = 0; i < this.props.day.days.length; i++) {
-      if (day.getDate() == this.props.day.days[i].date) {
-        this.setState({myDay: this.props.day.days[i]})
-      }
-    }
 
-    this.setState({selectedDay: day})
-
-  }
 
   render() {
 
 
     return (
       <div>
-        <DayPicker
-          onDayClick={this.handleDayClick}
-          selectedDays={this.state.selectedDay}
-        />
-        {this.state.selectedDay ? (
-          <div>
-            <p>You clicked {this.state.selectedDay.toLocaleDateString()}</p>
-            <h1> {this.state.myDay.createdAtString}</h1>
-            <h1> {this.state.myDay.calories} </h1>
-            <h1> {this.state.myDay.description}</h1>
-          </div>
-        ) : (
-          <p>Please select a day.</p>
-        )}
+
+        <MacroGraph daysToGraph={this.getDaysInRange(5)}/>
       </div>
     )
   }
