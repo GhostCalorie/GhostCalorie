@@ -1,5 +1,8 @@
 body {
   font-family: sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 a {
@@ -19,3 +22,8 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+#main {
+  flex: 1 0 auto;
+}
+  

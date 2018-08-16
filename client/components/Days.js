@@ -39,7 +39,6 @@ class Days extends Component {
 
 
   componentDidMount() {
-
     this.props.getUser()
     this.props.fetchDay(this.props.user)
   }
