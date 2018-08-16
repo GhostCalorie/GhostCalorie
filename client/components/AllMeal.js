@@ -7,7 +7,7 @@ import {AllFoods, CalorieGraph} from '../components'
 class AllMeal extends React.Component {
   render() {
     return (
-      <div>
+      
       <div className="container">
         <div className="row">
           <div className="col s12 m6 push-m3 center-align">
@@ -25,17 +25,14 @@ class AllMeal extends React.Component {
                     <i className="material-icons right">search</i>
                   </Link>
                 </div>
-
                 <AllFoods mealId={individualMeal.id} />
               </div>
               )}
             )}
-
           </div>
         </div>
-        {/* <CalorieGraph/> */}
       </div>
-      </div>
+      
     )
   }
 }
