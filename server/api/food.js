@@ -86,7 +86,7 @@ router.get('/:foodId', async (req, res, next) => {
 //create a new food in the DB
 router.post('/', async (req, res, next) => {
   try {
-    const food = await Food.create(createFoodFromJSON(req.body))
+    const food = await Food.create(req.body)
     const meal = await Meal.findById(req.body.mealId)
     await food.addMeal(meal, {through: {quantity: 1}})
     console.log('meal id in post route', req.body.mealId)
