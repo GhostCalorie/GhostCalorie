@@ -5,6 +5,7 @@ import {AllFoods, CalorieGraph} from '../components'
 
 
 class AllMeal extends React.Component {
+  
   render() {
     return (
       

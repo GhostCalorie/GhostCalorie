@@ -43,13 +43,13 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         {isLoggedIn && (
       <Switch>
-        // {/* Routes placed here are only available after logging in */}
-        // {/* Displays our Login component as a fallback */}
+         {/* Routes placed here are only available after logging in */}
+         {/* Displays our Login component as a fallback */}
         <Route exact path="/" component={AllMeal} />
         <Route path="/meal/search/:mealId" component={Search} />
         <Route path="/calorie" component={CalorieTracker} />
         <Route path="/days" component={Days} />
-        // {/* Displays our Login component as a fallback */}
+         {/* Displays our Login component as a fallback */}
         <Route path="/food/:mealId/:foodId/add" component={AddFood} />
         <Route path="/food/:foodId/edit" component={EditFood} />
       </Switch>
