@@ -7,10 +7,13 @@ import {AllFoods, CalorieGraph} from '../components'
 class AllMeal extends React.Component {
   render() {
     return (
+      <div>
       <div className="container">
         <div className="row">
           <div className="col s12 m6 push-m3 center-align">
-            {this.props.meals.map(individualMeal => (
+            {this.props.meal.map(individualMeal => {
+              if (individualMeal.dayId === this.props.dayId)
+              return (
               <div key={individualMeal.id} className="collection center-align">
                 <div className="flow-text truncate collection-item black-text">
                   {individualMeal.type}: {individualMeal.calories} calories
@@ -25,11 +28,13 @@ class AllMeal extends React.Component {
 
                 <AllFoods mealId={individualMeal.id} />
               </div>
-            ))}
+              )}
+            )}
 
           </div>
         </div>
-        <CalorieGraph/>
+        {/* <CalorieGraph/> */}
+      </div>
       </div>
     )
   }
@@ -37,7 +42,8 @@ class AllMeal extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    meals: state.meals
+    meal: state.meals,
+    user: state.user
   }
 
 }
