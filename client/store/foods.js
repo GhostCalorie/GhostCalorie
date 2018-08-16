@@ -68,10 +68,10 @@ export const fetchDBFood = (query) => async dispatch => {
 
 export const postFood = (newFood, mealId) => dispatch => {
     axios
-        .post('/api/food', newFood)
+        .post('/api/food', {newFood, mealId})
         .then(({ data }) => {
-            dispatch(addFood(data))
-            dispatch(addMealItem({ foodId: data.id, mealId: mealId }))
+            dispatch(addFood(data.food))
+            dispatch(addMealItem(data.mealItem))
             // history.push(`/food/${data.id}`)
         })
         .catch(error => console.error(error))
