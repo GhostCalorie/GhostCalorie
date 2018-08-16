@@ -17,7 +17,19 @@ class Days extends Component {
     }
   }
 
-
+    defaultToday = () => {
+        const today = moment().format('YYYY[-]MM[-]DD') 
+        console.log('today',today)
+        console.log('days', this.props.day.days)
+        if (Object.keys(this.state.myDay).length === 0){
+            console.log('in if')
+            for (let i=0; i < this.props.day.days.length; i++){
+                if (today === this.props.day.days[i].createdAtString){
+                    this.setState({myDay: this.props.day.days[i]})
+                }
+            }
+          }
+    }
     handleDayClick = (day) => {
         const myDay = moment(day.target.value,'DD MMMM YYYY').format('YYYY[-]MM[-]DD')
         for (let i=0; i < this.props.day.days.length; i++){
@@ -34,10 +46,17 @@ class Days extends Component {
   componentDidMount() {
     this.props.getUser()
     this.props.fetchDay(this.props.user)
+    
+  }
+
+  componentDidUpdate(){
+    this.defaultToday()
   }
     
 
     render() {
+        console.log('myDay',this.state.myDay)
+        console.log('props',this.props.day)
         return (
              <div>
                  <Input name='on' type='date' onChange={this.handleDayClick} value={this.state.selectedDay}/>
