@@ -63,7 +63,6 @@ export default function (state = defaultMealItem, action) {
       }
       return newState;
     case ADD_MEALITEM:
-    console.log('in the add meeal item')
     return {
         ...state,
         byId: { ...state.byId, [action.addedMealItems.id]: action.addedMealItems },
