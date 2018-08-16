@@ -29,7 +29,6 @@ class AllMeal extends React.Component {
 
           </div>
         </div>
-        <CalorieGraph/>
       </div>
     )
   }
