@@ -7,7 +7,7 @@ class AddFood extends React.Component {
     submit = addedFood => {
         const currentMealId = Number(window.location.pathname.split('/')[2])
         this.props.postFood(addedFood, currentMealId)
-        this.props.history.push(`/`)
+        this.props.history.push(`/days`)
     }
     render() {
         return <AddFormField {...this.props} onSubmit={this.submit} />

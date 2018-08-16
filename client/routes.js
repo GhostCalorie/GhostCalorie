@@ -44,6 +44,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         {isLoggedIn && (
       <Switch>
+
         // {/* Routes placed here are only available after logging in */}
         // {/* Displays our Login component as a fallback */}
         <Route exact path="/" component={Days} />

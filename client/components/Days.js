@@ -14,7 +14,6 @@ class Days extends Component {
     this.state = {
       selectedDay: undefined,
       myDay: {},
-      graphDays: []
     }
   }
 
@@ -22,15 +21,9 @@ class Days extends Component {
     handleDayClick = (day) => {
         const myDay = moment(day.target.value,'DD MMMM YYYY').format('YYYY[-]MM[-]DD')
         for (let i=0; i < this.props.day.days.length; i++){
-            console.log('hmyDay', myDay)
-            console.log('hthis.props.day.days', this.props.day.days)
-
             if(myDay === this.props.day.days[i].createdAtString){
-                console.log('in if')
                 this.setState({myDay: this.props.day.days[i]})
-            } else {
-                this.setState({myDay: {}})
-            }
+            } 
         }
         
         this.setState({selectedDay: myDay})
@@ -45,9 +38,6 @@ class Days extends Component {
     
 
     render() {
-
-        console.log('selectedDay', this.state.selectedDay)
-        console.log('myDay', this.state.myDay)
         return (
              <div>
                  <Input name='on' type='date' onChange={this.handleDayClick} value={this.state.selectedDay}/>
