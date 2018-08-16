@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Food, Meal} = require('../db/models')
+const {Food, Meal, MealItem} = require('../db/models')
 const request = require('request-promise-native')
 module.exports = router
 
@@ -86,11 +86,17 @@ router.get('/:foodId', async (req, res, next) => {
 //create a new food in the DB
 router.post('/', async (req, res, next) => {
   try {
-    const food = await Food.create(req.body)
+    const food = await Food.create(req.body.newFood)
     const meal = await Meal.findById(req.body.mealId)
     await food.addMeal(meal, {through: {quantity: 1}})
     console.log('meal id in post route', req.body.mealId)
-    res.json(food)
+    const mealItem = await MealItem.findOne({
+      where: {
+        foodId: food.id, 
+        mealId: meal.id
+      }
+    })
+    res.json({food, mealItem})
   } catch (err) {
     next(err)
   }
