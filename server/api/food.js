@@ -40,7 +40,8 @@ router.post('/nutritionix', async (req, res, next) => {
           "nf_protein",
           "nf_sugars",
           "nf_total_carbohydrate",
-          "total_fat"
+          "total_fat",
+          "nf_serving_size_unit"
         ],
         "offset": 0,
         "limit": 50,
@@ -89,7 +90,6 @@ router.post('/', async (req, res, next) => {
     const food = await Food.create(req.body.newFood)
     const meal = await Meal.findById(req.body.mealId)
     await food.addMeal(meal, {through: {quantity: 1}})
-    console.log('meal id in post route', req.body.mealId)
     const mealItem = await MealItem.findOne({
       where: {
         foodId: food.id, 

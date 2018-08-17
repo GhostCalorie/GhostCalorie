@@ -19,7 +19,6 @@ class Days extends Component {
 
     defaultToday = () => {
         const today = moment().format('YYYY[-]MM[-]DD') 
-        
         if (Object.keys(this.state.myDay).length === 0){
             for (let i=0; i < this.props.day.days.length; i++){
                 if (today === this.props.day.days[i].createdAtString){
@@ -42,9 +41,9 @@ class Days extends Component {
     }
 
 
-  componentDidMount() {
-    this.props.getUser()
-    this.props.fetchDay(this.props.user)
+  async componentDidMount() {
+    await this.props.getUser()
+    await this.props.fetchDay(this.props.user)
 
     if (Object.keys(this.props.myDay).length > 1) {
         this.setState({myDay: this.props.myDay})

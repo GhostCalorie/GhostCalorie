@@ -9,14 +9,6 @@ let FoodForm = props => {
       <h3>Add/Edit Food</h3>
       <br />
       <form className="row" onSubmit={handleSubmit}>
-        <div className="col s12">
-        <label htmlFor="brand_name">Name of Brand</label>
-          <Field 
-          name="brand_name" 
-          component="input" 
-          type="text" 
-          />
-        </div>
         <div className="col s12 m6">
         <label htmlFor="item_name">Name</label>
 
@@ -27,8 +19,16 @@ let FoodForm = props => {
           />
           {/* <span className="helper-text">Cannot be empty, must be > 0</span> */}
         </div>
+        <div className="col s12">
+        <label htmlFor="brand_name">Name of Brand</label>
+          <Field 
+          name="brand_name" 
+          component="input" 
+          type="text" 
+          />
+        </div>
         <div className="col s12 m6">
-        <label htmlFor="nf_calories">Calories</label>
+        <label htmlFor="nf_calories">Calories (kcal)</label>
           <Field
             name="nf_calories"
             component="input"
@@ -36,7 +36,7 @@ let FoodForm = props => {
           />
         </div>
         <div className="col s12 m6">
-        <label htmlFor="nf_sodium">Sodium</label>
+        <label htmlFor="nf_sodium">Sodium (mg)</label>
           <Field
             name="nf_sodium"
             component="input"
@@ -44,7 +44,7 @@ let FoodForm = props => {
           />
         </div>
         <div className="col s12 m6">
-        <label htmlFor="nf_protein">Protein</label>
+        <label htmlFor="nf_protein">Protein (g)</label>
           <Field
             name="nf_protein"
             component="input"
@@ -52,7 +52,7 @@ let FoodForm = props => {
           />
         </div>
         <div className="col s12 m6">
-        <label htmlFor="nf_sugars">Sugars</label>
+        <label htmlFor="nf_sugars">Sugars (g)</label>
           <Field
             name="nf_sugars"
             component="input"
@@ -60,7 +60,7 @@ let FoodForm = props => {
           />
         </div>
         <div className="col s12 m6">
-        <label htmlFor="nf_total_carbohydrate">Total Carbohydrate</label>
+        <label htmlFor="nf_total_carbohydrate">Total Carbohydrate (g)</label>
           <Field
             name="nf_total_carbohydrate"
             component="input"
@@ -68,15 +68,23 @@ let FoodForm = props => {
           />
         </div>
         <div className="col s12 m6">
-        <label htmlFor="total_fat">Total Fat</label>
+        <label htmlFor="total_fat">Total Fat (g)</label>
           <Field
             name="total_fat"
             component="input"
             type="number"
           />
         </div>
-        <button className="btn waves-effect waves-light" type="submit">
-          Submit
+        <div className="col s12 m6">
+        <label htmlFor="total_fat">Serving Size</label>
+          <Field
+            name="nf_serving_size_unit"
+            component="input"
+            type="text"
+          />
+        </div>
+        <button className="btn-floating btn-large waves-effect waves-light red" type="submit">
+         <i className="material-icons">add</i>
         </button>
       </form>
       {/* Hackish, needs to be rethought, but neccessary to keep materialize from

@@ -33,6 +33,9 @@ const Food = db.define('food', {
   },
   total_fat: {
     type: Sequelize.INTEGER,
+  },
+  nf_serving_size_unit: {
+    type: Sequelize.STRING
   }
 
 })
