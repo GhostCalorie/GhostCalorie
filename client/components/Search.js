@@ -60,7 +60,6 @@ class Search extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log('search state', state)
     return {
         dbfoods: state.dbfoods,
         food: state.foods,
@@ -70,7 +69,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchDBFood: (query) => {
-            // console.log('query in allfoods component', query)
             dispatch(fetchDBFood(query))
         }
     }
