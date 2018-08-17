@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import { me, fetchDay, newDay} from '../store'
-import {Input} from 'react-materialize'
 import 'jquery';
 import 'materialize-css/dist/js/materialize.js';
 import 'materialize-css/dist/css/materialize.css';
+import {Input} from 'react-materialize'
 import moment from 'moment'
 import {AllMeal} from './index'
 

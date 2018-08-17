@@ -4,15 +4,6 @@ module.exports = router
 
 // MOUNT on '/api/day/'
 
-// router.post('/', async (req, res, next) => {
-//   try{
-//     let day = await Day.create(req.body)
-//     res.json(day)
-//   } catch(err) {
-//     next(err)
-//   }
-// })
-
 router.get('/byUser/:userId', async (req, res, next) => {
   try {
     const days = await Day.findAll({where: {userId: req.params.userId}, include: [Meal]})
