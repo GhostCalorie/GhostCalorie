@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import { me, fetchDay, newDay} from '../store'
-import {Input} from 'react-materialize'
 import 'jquery';
 import 'materialize-css/dist/js/materialize.js';
 import 'materialize-css/dist/css/materialize.css';
+import {Input} from 'react-materialize'
 import moment from 'moment'
 import {AllMeal} from './index'
 
@@ -17,64 +17,60 @@ class Days extends Component {
     }
   }
 
-    defaultToday = () => {
-        const today = moment().format('YYYY[-]MM[-]DD') 
-        console.log('moment', today)
-        console.log('day of days', this.props.day.days)
-        if (Object.keys(this.state.myDay).length === 0){
-            for (let i=0; i < this.props.day.days.length; i++){
-                if (today === this.props.day.days[i].createdAtString){
-                    this.setState({myDay: this.props.day.days[i]})
-                }
-            }
-          }
-    }
-    handleDayClick = (day) => {
-        const myDay = moment(day.target.value,'DD MMMM YYYY').format('YYYY[-]MM[-]DD')
-        for (let i=0; i < this.props.day.days.length; i++){
-            if(myDay === this.props.day.days[i].createdAtString){
-                this.setState({myDay: this.props.day.days[i]})
-                this.props.newDay(this.props.day.days[i])
-            } 
+  defaultToday = () => {
+    const today = moment().format('YYYY[-]MM[-]DD')
+
+    if (Object.keys(this.state.myDay).length === 0){
+      for (let i=0; i < this.props.day.days.length; i++){
+        if (today === this.props.day.days[i].createdAtString){
+          this.setState({myDay: this.props.day.days[i]})
         }
-        
-        this.setState({selectedDay: myDay})
-        
+      }
     }
+  }
+  handleDayClick = (day) => {
+    const myDay = moment(day.target.value,'DD MMMM YYYY').format('YYYY[-]MM[-]DD')
+    for (let i=0; i < this.props.day.days.length; i++){
+      if(myDay === this.props.day.days[i].createdAtString){
+        this.setState({myDay: this.props.day.days[i]})
+        this.props.newDay(this.props.day.days[i])
+      }
+    }
+
+    this.setState({selectedDay: myDay})
+
+  }
 
 
   componentDidMount() {
     this.props.getUser()
-    console.log('user in day component', this.props.user)
     this.props.fetchDay(this.props.user)
 
     if (Object.keys(this.props.myDay).length > 1) {
-        this.setState({myDay: this.props.myDay})
+      this.setState({myDay: this.props.myDay})
     }
-    
+
   }
 
   componentDidUpdate(){
-      console.log('in component did update')
     this.defaultToday()
   }
-    
 
-    render() {
-        console.log('this my day', this.state.myDay)
-        return (
-             <div>
-                 <Input 
-                 name='on' 
-                 type='date' 
-                 onChange={this.handleDayClick} 
-                 value={this.state.selectedDay}
-                 placeholder={this.state.myDay.createdAtString}
-                 icon='view_headline'
-                 />
-                 
-                 <AllMeal myDay={this.state.myDay}/>
-                {/* {this.state.myDay  ?  (
+
+  render() {
+    return (
+      <div>
+        <Input
+          name='on'
+          type='date'
+          onChange={this.handleDayClick}
+          value={this.state.selectedDay}
+          placeholder={this.state.myDay.createdAtString}
+          icon='view_headline'
+        />
+
+        <AllMeal myDay={this.state.myDay}/>
+        {/* {this.state.myDay  ?  (
                     <div>
                         <p>You clicked {this.state.selectedDay}</p>
                         <h1> {this.state.myDay.createdAtString}</h1>
@@ -84,13 +80,13 @@ class Days extends Component {
                 ) : (
                 <p>Please select a day.</p>
                 )} */}
-             </div>
-        )
-    }
+      </div>
+    )
+  }
 }
-   
 
-  
+
+
 
 const mapStateToProps = state => {
   return {
@@ -101,18 +97,21 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-    return {
-        getUser: () => {
-            dispatch(me())
-        },
-        fetchDay: (id) => {
-            dispatch(fetchDay(id))
-        },
-        newDay: (day) => {
-            dispatch(newDay(day))
-        }
+  return {
+    getUser: () => {
+      dispatch(me())
+    },
+    fetchDay: (id) => {
+      dispatch(fetchDay(id))
+    },
+    newDay: (day) => {
+      dispatch(newDay(day))
     }
+  }
 }
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Days)
+
+
+
