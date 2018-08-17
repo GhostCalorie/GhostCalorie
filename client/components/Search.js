@@ -18,10 +18,10 @@ class Search extends Component {
     handleChange = evt => {
         const val = evt.target.value
         this.setState({ [evt.target.name]: val },
-            // this.props.fetchDBFood(val)
+            this.props.fetchDBFood(val)
 
         )
-        
+
 
     }
 
