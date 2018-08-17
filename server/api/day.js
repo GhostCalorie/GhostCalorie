@@ -16,6 +16,8 @@ module.exports = router
 router.get('/byUser/:userId', async (req, res, next) => {
   try {
     const days = await Day.findAll({where: {userId: req.params.userId}, include: [Meal]})
+    console.log('dkfsjbvfkjwbfliwbfwbfhbelhfkjb', days)
+
     res.json(days)
   } catch (err) {
     next(err)
@@ -28,8 +30,11 @@ router.get('/:dayId', async (req, res, next) => {
       where: {
         id: req.params.dayId
       }
+      
 
     })
+    console.log('days singluar in backend', day)
+
     res.json(day)
   } catch (err) {
     next(err)

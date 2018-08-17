@@ -19,7 +19,8 @@ class Days extends Component {
 
     defaultToday = () => {
         const today = moment().format('YYYY[-]MM[-]DD') 
-        
+        console.log('moment', today)
+        console.log('day of days', this.props.day.days)
         if (Object.keys(this.state.myDay).length === 0){
             for (let i=0; i < this.props.day.days.length; i++){
                 if (today === this.props.day.days[i].createdAtString){
@@ -44,6 +45,7 @@ class Days extends Component {
 
   componentDidMount() {
     this.props.getUser()
+    console.log('user in day component', this.props.user)
     this.props.fetchDay(this.props.user)
 
     if (Object.keys(this.props.myDay).length > 1) {
@@ -53,11 +55,13 @@ class Days extends Component {
   }
 
   componentDidUpdate(){
+      console.log('in component did update')
     this.defaultToday()
   }
     
 
     render() {
+        console.log('this my day', this.state.myDay)
         return (
              <div>
                  <Input 
@@ -80,7 +84,7 @@ class Days extends Component {
                 ) : (
                 <p>Please select a day.</p>
                 )} */}
-            </div>
+             </div>
         )
     }
 }

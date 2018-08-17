@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { postFood } from '../store'
+import { postFood, delFood } from '../store'
 
 class AllFoods extends Component {
     //   submit = (addedFood, currentMealId) => {
@@ -11,6 +11,11 @@ class AllFoods extends Component {
 
     //     this.props.postFood(addedFood, currentMealId)
     //   }
+    handleSubmit = () => {
+        event.preventDefault()
+        const foodId = event.target.value
+        this.props.delFood(foodId)
+    }
 
     render() {
         if (!this.props.mealItems) {
@@ -26,13 +31,23 @@ class AllFoods extends Component {
             return Object.values(mealItems.byId).map(elem => {
                 if (elem.mealId === this.props.mealId) {
                     return (
-                        <Link
-                            to={`/food/${elem.foodId}/edit`}
-                            className="collection-item black-text"
-                            key={elem.foodId}
+                        <div key={elem.foodId}
                         >
-                            <div> {foods.byId[elem.foodId.toString()].item_name} </div>
-                        </Link>
+                            <Link
+                                to={`/food/${elem.foodId}/edit`}
+                            >
+                                <div> {foods.byId[elem.foodId.toString()].item_name}
+                                </div>
+                            </Link>
+                            <button
+                                className="waves-effect waves-light btn teal lighten-1"
+                                type="button"
+                                value={elem.foodId}
+                                onClick={this.handleSubmit}
+                            >
+                                Delete
+                    </button>
+                        </div>
                     )
                 }
             })
@@ -62,16 +77,17 @@ class AllFoods extends Component {
 
 const mapStateToProps = state => {
 
-  return {
-    state,
-    foods: state.foods,
-    mealItems: state.mealItems
-  }
+    return {
+        state,
+        foods: state.foods,
+        mealItems: state.mealItems
+    }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        postFood: (newFood, mealId) => dispatch(postFood(newFood, mealId))
+        postFood: (newFood, mealId) => dispatch(postFood(newFood, mealId)),
+        deleteFood: (foodId) => dispatch(deleteFood(foodId))
     }
 }
 
