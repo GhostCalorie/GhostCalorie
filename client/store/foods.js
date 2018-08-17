@@ -41,6 +41,7 @@ const updateFood = updatedFood => ({
     type: UPDATE_FOOD,
     updatedFood
 })
+
 //THUNK CREATOR
 
 //GET from GhostCalorie DB
@@ -68,8 +69,10 @@ export const fetchDBFood = (query) => async dispatch => {
 
 export const postFood = (newFood, mealId) => dispatch => {
     axios
-        .post('/api/food', {newFood, mealId})
+        .post('/api/food', { newFood, mealId })
         .then(({ data }) => {
+            // console.log('food data in stor', data.food)
+            // console.log('mealitem data in stor', data.mealItem)
             dispatch(addFood(data.food))
             dispatch(addMealItem(data.mealItem))
             // history.push(`/food/${data.id}`)
@@ -87,6 +90,7 @@ export const putFood = food => dispatch => {
         })
         .catch(err => console.error(err))
 }
+
 
 //REDUCER
 

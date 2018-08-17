@@ -17,24 +17,13 @@ class Days extends Component {
     }
   }
 
-    defaultToday = () => {
-        const today = moment().format('YYYY[-]MM[-]DD') 
-        if (Object.keys(this.state.myDay).length === 0){
-            for (let i=0; i < this.props.day.days.length; i++){
-                if (today === this.props.day.days[i].createdAtString){
-                    this.setState({myDay: this.props.day.days[i]})
-                }
-            }
-          }
-    }
-    handleDayClick = (day) => {
-        const myDay = moment(day.target.value,'DD MMMM YYYY').format('YYYY[-]MM[-]DD')
-        for (let i=0; i < this.props.day.days.length; i++){
-            if(myDay === this.props.day.days[i].createdAtString){
-                this.setState({myDay: this.props.day.days[i]})
-                this.props.newDay(this.props.day.days[i])
-            } 
+  defaultToday = () => {
+    const today = moment().format('YYYY[-]MM[-]DD')
 
+    if (Object.keys(this.state.myDay).length === 0){
+      for (let i=0; i < this.props.day.days.length; i++){
+        if (today === this.props.day.days[i].createdAtString){
+          this.setState({myDay: this.props.day.days[i]})
         }
       }
     }
@@ -53,9 +42,9 @@ class Days extends Component {
   }
 
 
-  async componentDidMount() {
-    await this.props.getUser()
-    await this.props.fetchDay(this.props.user)
+  componentDidMount() {
+    this.props.getUser()
+    this.props.fetchDay(this.props.user)
 
     if (Object.keys(this.props.myDay).length > 1) {
       this.setState({myDay: this.props.myDay})

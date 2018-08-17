@@ -99,6 +99,8 @@ router.post('/', async (req, res, next) => {
         mealId: meal.id
       }
     })
+    // console.log('food in route', food)
+    // console.log('meal item in route', mealItem)
     res.json({food, mealItem})
   } catch (err) {
     next(err)
