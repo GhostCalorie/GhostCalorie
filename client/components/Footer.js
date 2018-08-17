@@ -6,7 +6,7 @@ const Footer = props => (
   <footer className="page-footer green">
     <div className="container">
       <div className="container">
-        <a className="grey-text text-lighten-3" href="/">
+        <a className="grey-text text-lighten-3" href="/reports">
           <i className="material-icons">wb_sunny</i>
           My Day
         </a>

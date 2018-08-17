@@ -12,9 +12,7 @@ class Days extends Component {
   constructor() {
     super()
     this.state = {
-      selectedDay: undefined,
-      myDay: {},
-      graphDays: []
+    numDays:1
     }
   }
 
@@ -48,6 +46,15 @@ class Days extends Component {
   // }
 
 
+  handleChange = evt => {
+    const val = evt.target.value
+    const prop = evt.target.prop
+      prop.setState({numDays : val}
+    )
+
+
+  }
+
 
   render() {
 
@@ -55,7 +62,15 @@ class Days extends Component {
     return (
       <div>
 
-        <MacroGraph daysToGraph={this.getDaysInRange(5)}/>
+
+        <input type="number" id="days" name="days"
+               placeholder="Min: 10, max: 100"
+               min="10" max="100"
+               prop={this}
+               onChange={this.handleChange}
+        />
+
+        <CalorieGraph daysToGraph={this.getDaysInRange(this.state.numDays)}/>
       </div>
     )
   }
