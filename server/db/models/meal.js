@@ -6,16 +6,27 @@ const Meal = db.define('meal', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty:true
+      notEmpty: true
     }
   },
   calories: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.INTEGER
   },
-  description :{
+
+
+  protein: {
+    type: Sequelize.DECIMAL
+  },
+  carbs: {
+    type: Sequelize.DECIMAL
+  },
+  fat: {
+    type: Sequelize.DECIMAL
+  },
+  description: {
     type: Sequelize.TEXT
   },
-  createdAtString  :{
+  createdAtString: {
     type: Sequelize.TEXT
 
   }

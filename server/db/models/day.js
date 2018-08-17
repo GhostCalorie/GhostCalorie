@@ -8,6 +8,20 @@ const Day = db.define('day', {
   calories: {
     type: Sequelize.INTEGER
   },
+  protein: {
+    type: Sequelize.DECIMAL
+  },
+  carbs: {
+    type: Sequelize.DECIMAL
+  },
+  fat: {
+    type: Sequelize.DECIMAL
+  },
+
+  currentWeight: {
+    type: Sequelize.DECIMAL
+  },
+
   description: {
     type: Sequelize.TEXT
   },
@@ -36,7 +50,12 @@ const setMeals = async day => {
     const day = await Day.findOne({where: {id: i}, include: [Meal]})
     day.dataValues.meals.forEach(async (meal) => {
       let calories = Math.ceil(Math.random() * 500)
-      await meal.update({calories: calories})
+      let carbs = Math.random() * 30
+      let fat = Math.random() * 30
+      let protein = Math.random() * 30
+
+
+      await meal.update({calories: calories, protein: protein, carbs: carbs, fat: fat})
 
 
     })

@@ -18,8 +18,8 @@ class Days extends Component {
   }
 
     defaultToday = () => {
-        const today = moment().format('YYYY[-]MM[-]DD') 
-        
+        const today = moment().format('YYYY[-]MM[-]DD')
+
         if (Object.keys(this.state.myDay).length === 0){
             for (let i=0; i < this.props.day.days.length; i++){
                 if (today === this.props.day.days[i].createdAtString){
@@ -34,11 +34,11 @@ class Days extends Component {
             if(myDay === this.props.day.days[i].createdAtString){
                 this.setState({myDay: this.props.day.days[i]})
                 this.props.newDay(this.props.day.days[i])
-            } 
+            }
         }
-        
+
         this.setState({selectedDay: myDay})
-        
+
     }
 
 
@@ -49,44 +49,38 @@ class Days extends Component {
     if (Object.keys(this.props.myDay).length > 1) {
         this.setState({myDay: this.props.myDay})
     }
-    
+
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     this.defaultToday()
-  }
-    
+    render()
+    {
 
-    render() {
-        return (
-             <div>
-                 <Input 
-                 name='on' 
-                 type='date' 
-                 onChange={this.handleDayClick} 
-                 value={this.state.selectedDay}
-                 placeholder={this.state.myDay.createdAtString}
-                 icon='view_headline'
-                 />
-                 
-                 <AllMeal myDay={this.state.myDay}/>
-                {/* {this.state.myDay  ?  (
-                    <div>
-                        <p>You clicked {this.state.selectedDay}</p>
-                        <h1> {this.state.myDay.createdAtString}</h1>
-                        <h1> {this.state.myDay.calories} </h1>
-                        <h1> {this.state.myDay.description}</h1>
-                    </div>
-                ) : (
-                <p>Please select a day.</p>
-                )} */}
+
+      return (
+        <div>
+          <DayPicker
+            onDayClick={this.handleDayClick}
+            selectedDays={this.state.selectedDay}
+          />
+          {this.state.selectedDay ? (
+            <div>
+              <p>You clicked {this.state.selectedDay.toLocaleDateString()}</p>
+              <h1> {this.state.myDay.createdAtString}</h1>
+              <h1> {this.state.myDay.calories} </h1>
+              <h1> {this.state.myDay.description}</h1>
             </div>
-        )
+          ) : (
+            <p>Please select a day.</p>
+          )}
+        </div>
+      )
     }
-}
-   
 
-  
+  }
+
+
 
 const mapStateToProps = state => {
   return {
