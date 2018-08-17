@@ -40,7 +40,7 @@ export const auth = (email, password, method, startingWeight, weightGoal, name) 
 
   try {
     dispatch(getUser(res.data))
-    history.push('/home')
+    history.push('/')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }

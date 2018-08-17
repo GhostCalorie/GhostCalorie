@@ -26,10 +26,8 @@ class Search extends Component {
     }
 
     render() {
-        console.log("in the search componentn")
         return (
             <div>
-                {/* {console.log('in the search component', this.props)} */}
                 <div className="col s12 l3 z-depth-2">
                     <form>
                         <label className="label-icon valign-wrapper">
@@ -62,6 +60,7 @@ class Search extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log('search state', state)
     return {
         dbfoods: state.dbfoods,
         food: state.foods,

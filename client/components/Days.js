@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
-import { me, fetchDay} from '../store'
+import { me, fetchDay, newDay} from '../store'
 import {Input} from 'react-materialize'
 import 'jquery';
 import 'materialize-css/dist/js/materialize.js';
@@ -19,10 +19,8 @@ class Days extends Component {
 
     defaultToday = () => {
         const today = moment().format('YYYY[-]MM[-]DD') 
-        console.log('today',today)
-        console.log('days', this.props.day.days)
+        
         if (Object.keys(this.state.myDay).length === 0){
-            console.log('in if')
             for (let i=0; i < this.props.day.days.length; i++){
                 if (today === this.props.day.days[i].createdAtString){
                     this.setState({myDay: this.props.day.days[i]})
@@ -35,6 +33,7 @@ class Days extends Component {
         for (let i=0; i < this.props.day.days.length; i++){
             if(myDay === this.props.day.days[i].createdAtString){
                 this.setState({myDay: this.props.day.days[i]})
+                this.props.newDay(this.props.day.days[i])
             } 
         }
         
@@ -46,6 +45,10 @@ class Days extends Component {
   componentDidMount() {
     this.props.getUser()
     this.props.fetchDay(this.props.user)
+
+    if (Object.keys(this.props.myDay).length > 1) {
+        this.setState({myDay: this.props.myDay})
+    }
     
   }
 
@@ -55,12 +58,18 @@ class Days extends Component {
     
 
     render() {
-        console.log('myDay',this.state.myDay)
-        console.log('props',this.props.day)
         return (
              <div>
-                 <Input name='on' type='date' onChange={this.handleDayClick} value={this.state.selectedDay}/>
-                 <AllMeal dayId={this.state.myDay.id} />
+                 <Input 
+                 name='on' 
+                 type='date' 
+                 onChange={this.handleDayClick} 
+                 value={this.state.selectedDay}
+                 placeholder={this.state.myDay.createdAtString}
+                 icon='view_headline'
+                 />
+                 
+                 <AllMeal myDay={this.state.myDay}/>
                 {/* {this.state.myDay  ?  (
                     <div>
                         <p>You clicked {this.state.selectedDay}</p>
@@ -82,7 +91,8 @@ class Days extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user.id,
-    day: state.days
+    day: state.days,
+    myDay: state.days.myDay
   }
 }
 
@@ -93,6 +103,9 @@ const mapDispatchToProps = dispatch => {
         },
         fetchDay: (id) => {
             dispatch(fetchDay(id))
+        },
+        newDay: (day) => {
+            dispatch(newDay(day))
         }
     }
 }

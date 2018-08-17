@@ -7,7 +7,6 @@ import {auth} from '../store'
  * COMPONENT
  */
 function signupForm(isSignup) {
-  console.log(isSignup)
   if (!isSignup) {
     return
   }
