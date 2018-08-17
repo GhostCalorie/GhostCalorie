@@ -22,49 +22,79 @@ async function seed() {
         id: 55,
         description: 'I ate snickers',
         createdAtString: '2018-08-08',
-        date: '14'
+        date: '14',
+
       }),
       Day.create({
         id: 56,
         description: 'I ate mars bar',
         createdAtString: '2018-08-09',
-        date: '15'
+        date: '15',
+        calories : Math.ceil(Math.random()*2000),
+        protein : Math.ceil(Math.random()*24),
+        carbs : Math.ceil(Math.random()*15),
+        fat : Math.ceil(Math.random()*18)
+
       }),
       Day.create({
         id: 57,
         description: 'I ate twix',
         createdAtString: '2018-08-10',
-        date: '16'
+        date: '16',
+        calories : Math.ceil(Math.random()*2000),
+        protein : Math.ceil(Math.random()*24),
+        carbs : Math.ceil(Math.random()*15),
+        fat : Math.ceil(Math.random()*18)
       }),
       Day.create({
         id: 58,
         description: 'I ate snickers',
         createdAtString: '2018-08-11',
-        date: '14'
+        date: '14',
+        calories : Math.ceil(Math.random()*2000),
+        protein : Math.ceil(Math.random()*24),
+        carbs : Math.ceil(Math.random()*15),
+        fat : Math.ceil(Math.random()*18)
       }),
       Day.create({
         id: 59,
         description: 'I ate mars bar',
         createdAtString: '2018-08-12',
-        date: '15'
+        date: '15',
+        calories : Math.ceil(Math.random()*2000),
+        protein : Math.ceil(Math.random()*24),
+        carbs : Math.ceil(Math.random()*15),
+        fat : Math.ceil(Math.random()*18)
       }),
       Day.create({
         id: 60,
         description: 'I ate twix',
         createdAtString: '2018-08-13',
-        date: '16'
+        date: '16',
+        calories : Math.ceil(Math.random()*2000),
+        protein : Math.ceil(Math.random()*24),
+        carbs : Math.ceil(Math.random()*15),
+        fat : Math.ceil(Math.random()*18)
       }),
       Day.create({
         id: 61,
         description: 'I ate mars bar',
         createdAtString: '2018-08-14',
-        date: '15'
+        date: '15',
+        calories : Math.ceil(Math.random()*2000),
+        protein : Math.ceil(Math.random()*24),
+        carbs : Math.ceil(Math.random()*15),
+        fat : Math.ceil(Math.random()*18)
       }),
       Day.create({
         id: 62,
         description: 'I ate mars bar',
         createdAtString: '2018-08-15',
-        date: '15'
+        date: '15',
+        calories : Math.ceil(Math.random()*2000),
+        protein : Math.ceil(Math.random()*24),
+        carbs : Math.ceil(Math.random()*15),
+        fat : Math.ceil(Math.random()*18)
       })
 
     ]

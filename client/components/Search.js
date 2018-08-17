@@ -21,7 +21,7 @@ class Search extends Component {
             this.props.fetchDBFood(val)
 
         )
-        
+
 
     }
 

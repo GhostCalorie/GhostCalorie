@@ -88,11 +88,14 @@ router.get('/:foodId', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const food = await Food.create(req.body.newFood)
+
+
+
     const meal = await Meal.findById(req.body.mealId)
     await food.addMeal(meal, {through: {quantity: 1}})
     const mealItem = await MealItem.findOne({
       where: {
-        foodId: food.id, 
+        foodId: food.id,
         mealId: meal.id
       }
     })
