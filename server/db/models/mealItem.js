@@ -20,7 +20,9 @@ const MealItem = db.define('mealItem', {
     }
   }
 
-})
+}, {
+
+  })
 
 const updateCalorieTotal = async mealItem => {
 
@@ -28,24 +30,24 @@ const updateCalorieTotal = async mealItem => {
 
   let calTotal = 0
 
-
   //goes through each food associated with a meal and sums the multiple of its quantity and calorie amt to get total cal of a meal
-  meal.dataValues.food.forEach((food) => {
-    calTotal += food.dataValues.mealItem.dataValues.quantity * food.dataValues.nf_calories
+  if (meal) {
+    meal.dataValues.food.forEach((food) => {
+      calTotal += food.dataValues.mealItem.dataValues.quantity * food.dataValues.nf_calories
 
-  })
+    })
 
-  await meal.update({ calories: calTotal })
+    await meal.update({ calories: calTotal })
 
-
+  }
 }
 
 MealItem.afterUpdate(updateCalorieTotal)
+// MealItem.afterBulkUpdate(updateCalorieTotal)
 MealItem.afterCreate(updateCalorieTotal)
+// MealItem.afterBulkCreate(updateCalorieTotal)
 MealItem.afterDestroy(updateCalorieTotal)
-
-
-
+// MealItem.afterBulkDestroy(updateCalorieTotal)
 
 module.exports = MealItem
 
