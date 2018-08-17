@@ -73,15 +73,6 @@ console.log(day)
   }
 }
 
-MealItem.afterUpdate(updateCalorieTotal)
-// MealItem.afterBulkUpdate(updateCalorieTotal)
-MealItem.afterCreate(updateCalorieTotal)
-// MealItem.afterBulkCreate(updateCalorieTotal)
-MealItem.afterDestroy(updateCalorieTotal)
-// MealItem.afterBulkDestroy(updateCalorieTotal)
-
-
-}
 
 MealItem.afterUpdate(updateMacroTotal)
 MealItem.afterCreate(updateMacroTotal)
