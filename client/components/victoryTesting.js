@@ -26,7 +26,6 @@ class VictoryTest extends React.Component {
           <VictoryGroup offset={20} style={{data: {width: 15}}}>
             <VictoryStack name={'calories'} colorScale={'red'}>
               {getBarData().map((data, index) => {
-                console.log(data)
                 return <VictoryBar key={index} data={data}/>
               })}
             </VictoryStack>
