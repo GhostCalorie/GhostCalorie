@@ -11,15 +11,7 @@ class AddFood extends React.Component {
         this.props.history.push(`/`)
     }
     render() {
-        console.log('propspoo', this.props)
         return <AddFormField {...this.props} onSubmit={this.submit} />
-    }
-}
-
-const mapStateToProps = state => {
-    console.log('state', state)
-    return {
-
     }
 }
 
@@ -27,4 +19,4 @@ const mapDispatchToProps = dispatch => ({
     postFood: (food, mealId) => dispatch(postFood(food, mealId))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddFood)
+export default connect(null, mapDispatchToProps)(AddFood)

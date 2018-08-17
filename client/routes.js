@@ -13,9 +13,17 @@ import {
   AddFood,
   CalorieTracker,
   Days,
-  Report
+
+  Weight,
+  Reports
 } from './components'
-import {me, fetchFood, getMeals, getMealItems, fetchDBFood, fetchDay} from './store'
+import {
+  me, 
+  fetchFood, 
+  getMeals, 
+  getMealItems, 
+  fetchDBFood, 
+} from './store'
 import meal from './store/meal';
 
 /**
@@ -51,7 +59,12 @@ class Routes extends Component {
         <Route exact path="/" component={Days} />
         <Route path="/meal/search/:mealId" component={Search} />
         <Route path="/meal" component={AllMeal} />
-        <Route path="/report" component={Report} />
+
+        <Route path="/calorie" component={CalorieTracker} />
+        <Route path="/days" component={Days} />
+        <Route path="/reports" component={Reports} />
+        <Route exact path="/weight" component={Weight} />
+
         // {/* Displays our Login component as a fallback */}
         <Route path="/food/:mealId/:foodId/add" component={AddFood} />
         <Route path="/food/:foodId/edit" component={EditFood} />
@@ -85,6 +98,7 @@ const mapDispatch = dispatch => {
       await dispatch(fetchFood())
       await dispatch(fetchDBFood())
       await dispatch(getMealItems())
+    
     }
   }
 }

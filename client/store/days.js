@@ -47,8 +47,6 @@ export const newDay = day => dispatch => {
 
 export default function(state = initialState, action) {
     switch (action.type) {
-        // case CREATE_DAY:
-        //     return { ...state, days: action.day}
         case GET_DAY:
             return { ...state, days: action.day}
         case MY_DAY:

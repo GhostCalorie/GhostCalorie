@@ -1,8 +1,11 @@
 const User = require('./user')
 const Food = require('./foods')
+const MealItem = require('./mealItem')
+
+
 const Meal = require('./meal')
 const Day = require('./day')
-const MealItem = require('./mealItem')
+
 
 
 
