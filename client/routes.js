@@ -17,14 +17,9 @@ import {
   Weight,
   Reports
 } from './components'
-import {
-  me, 
-  fetchFood, 
-  getMeals, 
-  getMealItems, 
-  fetchDBFood, 
-} from './store'
-import meal from './store/meal';
+import {me, fetchFood, getMeals, getMealItems, fetchDBFood, fetchDay} from './store'
+import meal from './store/meal'
+
 
 /**
  * COMPONENT
@@ -32,15 +27,9 @@ import meal from './store/meal';
 class Routes extends Component {
 
 
-
-
-
   componentDidMount() {
     this.props.loadInitialData()
   }
-
-
-
 
 
   render() {
@@ -49,10 +38,24 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are only available after logging in */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/login" component={Login}/>
+        <Route path="/signup" component={Signup}/>
         {isLoggedIn && (
-      <Switch>
+          <Switch>
+
+            // {/* Routes placed here are only available after logging in */}
+            // {/* Displays our Login component as a fallback */}
+            <Route exact path="/" component={Days}/>
+            <Route path="/meal/search/:mealId" component={Search}/>
+            <Route path="/meal" component={AllMeal}/>
+            <Route path="/calorie" component={CalorieTracker}/>
+            <Route path="/days" component={Days}/>
+            <Route path="/reports" component={Reports}/>
+
+            // {/* Displays our Login component as a fallback */}
+            <Route path="/food/:mealId/:foodId/add" component={AddFood}/>
+            <Route path="/food/:foodId/edit" component={EditFood}/>
+          </Switch>
 
         // {/* Routes placed here are only available after logging in */}
         // {/* Displays our Login component as a fallback */}
@@ -69,9 +72,10 @@ class Routes extends Component {
         <Route path="/food/:mealId/:foodId/add" component={AddFood} />
         <Route path="/food/:foodId/edit" component={EditFood} />
       </Switch>
+
         )}
-         {/* Displays our Login component as a fallback */}
-         {/* <Route component={Login} /> */}
+        {/* Displays our Login component as a fallback */}
+        {/* <Route component={Login} /> */}
       </Switch>
     )
   }
@@ -85,7 +89,7 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
-    user: state.user.id,
+    user: state.user.id
 
   }
 }
