@@ -18,6 +18,10 @@ const Day = db.define('day', {
     type: Sequelize.DECIMAL
   },
 
+  currentWeight: {
+    type: Sequelize.DECIMAL
+  },
+
   description: {
     type: Sequelize.TEXT
   },
