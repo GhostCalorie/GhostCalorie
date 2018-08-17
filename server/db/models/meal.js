@@ -1,5 +1,8 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const MealItem = require ('./mealItem')
+const Day = require ('./day')
+
 
 const Meal = db.define('meal', {
   type: {
@@ -32,6 +35,10 @@ const Meal = db.define('meal', {
   }
 
 })
+
+
+
+
 
 module.exports = Meal
 

@@ -10,6 +10,7 @@ import {connect} from 'react-redux'
  */
 export const MacroGraph = props => {
   const {daysToGraph} = props
+  console.log(daysToGraph)
 
 
   const getBarData = () => {
@@ -26,15 +27,17 @@ export const MacroGraph = props => {
   return (
 
 
-    <div>
-      <VictoryChart domainPadding={{x: 5}} width={400} height={400} offset={10}>
+    <div style={{fontSize: 2}}>
+      <VictoryChart domainPadding={{x: 5}} width={400} height={400} offset={10}
+                    >
         <VictoryGroup offset={10} style={{data: {width: 8}}}>
           <VictoryStack colorScale={'red'}>
             {
 
 
-              groupByMeal(daysToGraph, 'calories').map((data, index) => {
+              groupByMeal(daysToGraph, 'protein').map((data, index) => {
 
+                console.log(data)
                 return <VictoryBar key={index} data={data}/>
 
 
@@ -45,7 +48,7 @@ export const MacroGraph = props => {
             {
 
 
-              groupByMeal(daysToGraph, 'calories').map((data, index) => {
+              groupByMeal(daysToGraph, 'carbs').map((data, index) => {
 
                 return <VictoryBar key={index} data={data}/>
 
@@ -57,7 +60,7 @@ export const MacroGraph = props => {
             {
 
 
-              groupByMeal(daysToGraph, 'calories').map((data, index) => {
+              groupByMeal(daysToGraph, 'fat').map((data, index) => {
 
                 return <VictoryBar key={index} data={data}/>
 
