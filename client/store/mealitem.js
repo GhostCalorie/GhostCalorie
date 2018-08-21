@@ -74,12 +74,10 @@ export const delMealItem = (mealId) => {
   return async dispatch => {
     try {
       await axios.delete(`/api/mealItems/${mealId}`)
-      console.log('meal item store delete before', mealId)
 
       dispatch(deleteMealItem(mealId))
-      console.log('meal item store delete')
     } catch (err) {
-      console.log('There is error in delete', err)
+      console.log(err)
     }
   }
 }
