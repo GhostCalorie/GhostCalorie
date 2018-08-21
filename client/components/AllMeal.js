@@ -15,7 +15,7 @@ class AllMeal extends React.Component {
           className="label-icon valign-wrapper"
         >
           <i className="material-icons">search</i>
-          Search For Food
+          Search To Log 
             </Link>
         <div className="row">
           <div className="col s12 m6 push-m3 center-align">

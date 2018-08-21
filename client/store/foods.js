@@ -7,7 +7,6 @@ const GET_FOOD = 'GET_FOODS'
 const GET_DB_FOOD = 'GET_DB_FOOD'
 const ADD_FOOD = 'ADD_FOOD'
 const UPDATE_FOOD = 'UPDATE_FOOD'
-const DELETE_FOOD = 'DELETE_FOOD'
 
 //INITIAL STATE
 
@@ -43,11 +42,6 @@ const updateFood = updatedFood => ({
     updatedFood
 })
 
-const deleteFood = foodId => ({
-    type: DELETE_FOOD,
-    foodId
-})
-
 //THUNK CREATOR
 
 //GET from GhostCalorie DB
@@ -77,6 +71,8 @@ export const postFood = (newFood, mealId) => dispatch => {
     axios
         .post('/api/food', { newFood, mealId })
         .then(({ data }) => {
+            // console.log('food data in stor', data.food)
+            // console.log('mealitem data in stor', data.mealItem)
             dispatch(addFood(data.food))
             dispatch(addMealItem(data.mealItem))
             // history.push(`/food/${data.id}`)
@@ -95,18 +91,6 @@ export const putFood = food => dispatch => {
         .catch(err => console.error(err))
 }
 
-export const delFood = (id) => {
-    return async dispatch => {
-        try {
-            await axios.delete(`/api/food/${id}`)
-
-            const newDelete = Number(id)
-            dispatch(deleteFood(newDelete))
-        } catch (err) {
-            console.log('There is error in delete', err)
-        }
-    }
-}
 
 //REDUCER
 
@@ -133,15 +117,6 @@ export default function (state = initialState, action) {
                 allIds: [...state.allIds, action.addedFood.id],
             }
         case UPDATE_FOOD:
-            return {
-                ...state,
-                byId: {
-                    ...state.byId,
-                    [action.updatedFood.id]: action.updatedFood
-                },
-                allIds: [...state.allIds]
-            }
-        case DELETE_FOOD:
             return {
                 ...state,
                 byId: {

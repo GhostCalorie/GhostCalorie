@@ -24,6 +24,7 @@ const MealItem = db.define('mealItem', {
 })
 
 const updateMacroTotal = async mealItem => {
+  
   let meal = await Meal.findOne({where: {id: mealItem.mealId}, include: [Food]})
 
 
@@ -53,22 +54,17 @@ const updateMacroTotal = async mealItem => {
   let dayFatTotal = 0
   let dayProteinTotal = 0
 
-  day.dataValues.meals.forEach((meal)=>{
+  day.dataValues.meals.forEach((individualMeal)=>{
 
-    dayCalTotal += Number(meal.dataValues.calories)
-    dayCarbTotal += Number(meal.dataValues.carbs)
-    dayFatTotal += Number(meal.dataValues.fat)
-    dayProteinTotal+=Number( meal.dataValues.protein)
+    dayCalTotal += Number(individualMeal.dataValues.calories)
+    dayCarbTotal += Number(individualMeal.dataValues.carbs)
+    dayFatTotal += Number(individualMeal.dataValues.fat)
+    dayProteinTotal+=Number( individualMeal.dataValues.protein)
 
 
   })
+
   await day.update({calories: dayCalTotal, fat: dayFatTotal, carbs: dayCarbTotal, protein: dayProteinTotal})
-
-
-
-
-
-
 
 }
 
