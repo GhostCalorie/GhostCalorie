@@ -27,7 +27,10 @@ const MealItem = db.define('mealItem', {
 
 const updateMacroTotal = async mealItem => {
   let meal = await Meal.findOne({where: {id: mealItem.mealId}, include: [Food]})
-
+  
+  if(!meal) {
+    meal = await Meal.findOne({where: {id: mealItem[0].mealId}, include: [Food]})
+  }
 
   let calTotal = 0
   let carbTotal = 0
@@ -74,7 +77,7 @@ const updateMacroTotal = async mealItem => {
 
 
 MealItem.afterUpdate(updateMacroTotal)
-MealItem.afterCreate(updateMacroTotal)
+MealItem.afterBulkCreate(updateMacroTotal)
 MealItem.afterDestroy(updateMacroTotal)
 
 
