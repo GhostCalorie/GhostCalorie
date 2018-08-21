@@ -11,8 +11,8 @@ import {connect} from 'react-redux'
 export const CalorieGraph = props => {
   const {daysToGraph} = props
   const groupedByMeal = groupByMeal(daysToGraph)
-
-
+  console.log('groupedByMeal', groupedByMeal)
+  console.log('daysToGraph', daysToGraph)
   return (
     <div>
       <VictoryChart domainPadding={{x: 50}} width={400} height={400}>

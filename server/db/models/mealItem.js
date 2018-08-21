@@ -50,7 +50,6 @@ const updateMacroTotal = async mealItem => {
 
   const day = await Day.findOne({where : {id : meal.dayId, },  include :[Meal]})
 
-console.log(day)
 
   let dayCalTotal = 0
   let dayCarbTotal = 0

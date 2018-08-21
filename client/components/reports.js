@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {me, fetchDay} from '../store'
-import DayPicker from 'react-day-picker'
-import 'react-day-picker/lib/style.css'
 import moment from 'moment'
 import CalorieGraph from './calorieGraph'
 import MacroGraph from './macroGraph'
@@ -51,14 +49,11 @@ class Days extends Component {
     const prop = evt.target.prop
       prop.setState({numDays : val}
     )
-
-
   }
 
 
   render() {
-
-
+    console.log('this.state.numDays', this.state.numDays)
     return (
       <div>
 

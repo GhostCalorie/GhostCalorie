@@ -16,6 +16,7 @@ export {default as Footer} from './Footer'
 export {default as CalorieGraph} from './calorieGraph'
 export {default as Reports} from './reports'
 export {default as Weight} from './weight'
+export {default as CalorieTracker} from './CalorieTracker'
 
 
 export {Login, Signup} from './auth-form'
