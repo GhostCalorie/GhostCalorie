@@ -54,10 +54,6 @@ router.post('/nutritionix', async (req, res, next) => {
         "filters": {
           "not": {
             "item_type": 2
-          },
-          "nf_calories": {
-            "from": 0,
-            "to": 400
           }
         }
     },

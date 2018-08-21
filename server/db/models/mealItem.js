@@ -68,6 +68,7 @@ const updateMacroTotal = async mealItem => {
 
 }
 
+
 MealItem.afterUpdate(updateMacroTotal)
 MealItem.afterCreate(updateMacroTotal)
 MealItem.afterDestroy(updateMacroTotal)

@@ -26,7 +26,6 @@ const myDay = day => ({type: MY_DAY, day})
 export const fetchDay = id => async dispatch => {
     try{
         let res = await axios.get(`/api/day/byUser/${3}`)
-        console.log('day in days store', res.data)
         dispatch(getDay(res.data))
     } catch(err) {
         return dispatch(getDay({error: err.message}))

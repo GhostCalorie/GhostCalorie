@@ -58,6 +58,7 @@ class Days extends Component {
 
 
   render() {
+    console.log('myDay', this.state.myDay)
     return (
       <div>
         <Input
@@ -70,16 +71,6 @@ class Days extends Component {
         />
 
         <AllMeal myDay={this.state.myDay}/>
-        {/* {this.state.myDay  ?  (
-                    <div>
-                        <p>You clicked {this.state.selectedDay}</p>
-                        <h1> {this.state.myDay.createdAtString}</h1>
-                        <h1> {this.state.myDay.calories} </h1>
-                        <h1> {this.state.myDay.description}</h1>
-                    </div>
-                ) : (
-                <p>Please select a day.</p>
-                )} */}
       </div>
     )
   }
