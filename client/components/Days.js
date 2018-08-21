@@ -58,7 +58,8 @@ class Days extends Component {
 
 
   render() {
-    console.log('myDay', this.state.myDay)
+    
+    const {meals} = this.props.myDay
     return (
       <div>
         <Input
@@ -71,7 +72,7 @@ class Days extends Component {
         />
 
         <AllMeal myDay={this.state.myDay}/>
-        <CalorieTracker />
+        <CalorieTracker meals={meals} />
       </div>
     )
   }
