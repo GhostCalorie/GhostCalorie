@@ -21,20 +21,25 @@ const MealItem = db.define('mealItem', {
     }
   }
 
-})
+}, {
+
+  })
 
 const updateMacroTotal = async mealItem => {
-  
   let meal = await Meal.findOne({where: {id: mealItem.mealId}, include: [Food]})
-
+  
+  if(!meal) {
+    meal = await Meal.findOne({where: {id: mealItem[0].mealId}, include: [Food]})
+  }
 
   let calTotal = 0
   let carbTotal = 0
   let fatTotal = 0
   let proteinTotal = 0
 
-
   //goes through each food associated with a meal and sums the multiple of its quantity and calorie amt to get total cal of a meal
+  if (meal) {
+   
   meal.dataValues.food.forEach((food) => {
     calTotal += food.dataValues.mealItem.dataValues.quantity * food.dataValues.nf_calories
     carbTotal += food.dataValues.mealItem.dataValues.quantity * food.dataValues.nf_total_carbohydrate
@@ -54,23 +59,25 @@ const updateMacroTotal = async mealItem => {
   let dayFatTotal = 0
   let dayProteinTotal = 0
 
-  day.dataValues.meals.forEach((individualMeal)=>{
+  day.dataValues.meals.forEach((meal)=>{
 
-    dayCalTotal += Number(individualMeal.dataValues.calories)
-    dayCarbTotal += Number(individualMeal.dataValues.carbs)
-    dayFatTotal += Number(individualMeal.dataValues.fat)
-    dayProteinTotal+=Number( individualMeal.dataValues.protein)
+    dayCalTotal += Number(meal.dataValues.calories)
+    dayCarbTotal += Number(meal.dataValues.carbs)
+    dayFatTotal += Number(meal.dataValues.fat)
+    dayProteinTotal+=Number( meal.dataValues.protein)
 
 
   })
-
   await day.update({calories: dayCalTotal, fat: dayFatTotal, carbs: dayCarbTotal, protein: dayProteinTotal})
 
+  await meal.update({ calories: calTotal })
+
+  }
 }
 
 
 MealItem.afterUpdate(updateMacroTotal)
-MealItem.afterCreate(updateMacroTotal)
+MealItem.afterBulkCreate(updateMacroTotal)
 MealItem.afterDestroy(updateMacroTotal)
 
 
