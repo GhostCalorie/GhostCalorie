@@ -7,7 +7,8 @@ const moment = require('moment')
 const Day = db.define('day', {
 
   calories: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   },
   protein: {
     type: Sequelize.DECIMAL
