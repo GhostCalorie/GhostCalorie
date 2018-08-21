@@ -10,7 +10,6 @@ import {connect} from 'react-redux'
  */
 export const MacroGraph = props => {
   const {daysToGraph} = props
-  console.log(daysToGraph)
 
 
   const getBarData = () => {
@@ -37,7 +36,6 @@ export const MacroGraph = props => {
 
               groupByMeal(daysToGraph, 'protein').map((data, index) => {
 
-                console.log(data)
                 return <VictoryBar key={index} data={data}/>
 
 

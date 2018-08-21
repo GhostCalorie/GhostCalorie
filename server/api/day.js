@@ -23,7 +23,6 @@ router.get('/:dayId', async (req, res, next) => {
       
 
     })
-    console.log('days singluar in backend', day)
 
     res.json(day)
   } catch (err) {

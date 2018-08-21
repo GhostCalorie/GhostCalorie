@@ -44,6 +44,7 @@ function signupForm(isSignup) {
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
   const isSignup = name === 'signup'
+
   return (
     <div>
       <form onSubmit={handleSubmit} name={name}>
