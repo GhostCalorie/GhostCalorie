@@ -17,6 +17,7 @@ export {default as CalorieGraph} from './calorieGraph'
 export {default as Reports} from './reports'
 export {default as Weight} from './weight'
 export {default as CalorieTracker} from './CalorieTracker'
+export {default as MacroTracker} from './MacroTracker'
 
 
 export {Login, Signup} from './auth-form'

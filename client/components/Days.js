@@ -6,7 +6,7 @@ import 'materialize-css/dist/js/materialize.js';
 import 'materialize-css/dist/css/materialize.css';
 import {Input} from 'react-materialize'
 import moment from 'moment'
-import {AllMeal, CalorieTracker} from './index'
+import {AllMeal, CalorieTracker, MacroTracker} from './index'
 
 class Days extends Component {
   constructor() {
@@ -41,7 +41,6 @@ class Days extends Component {
 
   }
 
-
   componentDidMount() {
     this.props.getUser()
     this.props.fetchDay(this.props.user)
@@ -55,7 +54,6 @@ class Days extends Component {
   componentDidUpdate(){
     this.defaultToday()
   }
-
 
   render() {
     
@@ -73,11 +71,12 @@ class Days extends Component {
 
         <AllMeal myDay={this.state.myDay}/>
         <CalorieTracker meals={meals} />
+        <MacroTracker meals={meals} />
+
       </div>
     )
   }
 }
-
 
 
 
@@ -102,7 +101,6 @@ const mapDispatchToProps = dispatch => {
     }
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Days)
 
