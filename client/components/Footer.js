@@ -1,12 +1,8 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-
 const Footer = props => (
   <footer className="page-footer green">
     <div className="container">
       <div className="container">
-        <a className="grey-text text-lighten-3" href="/reports">
+        <a className="grey-text text-lighten-3" href="/calorie">
           <i className="material-icons">wb_sunny</i>
           My Day
         </a>
