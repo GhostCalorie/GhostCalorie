@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
-import { me, fetchDay, newDay} from '../store'
+import { me, fetchDay, newDay, getMealItems} from '../store'
 import 'jquery';
 import 'materialize-css/dist/js/materialize.js';
 import 'materialize-css/dist/css/materialize.css';
@@ -26,7 +26,7 @@ class Days extends Component {
           this.setState({myDay: this.props.day.days[i]})
         }
       }
-    }
+    } 
   }
   handleDayClick = (day) => {
     const myDay = moment(day.target.value,'DD MMMM YYYY').format('YYYY[-]MM[-]DD')
@@ -41,13 +41,18 @@ class Days extends Component {
 
   }
 
-  componentDidMount() {
-    this.props.getUser()
-    this.props.fetchDay(this.props.user)
+
+
+  async componentDidMount() {
+    await this.props.getUser()
+    await this.props.fetchDay(this.props.user)
 
     if (Object.keys(this.props.myDay).length > 1) {
       this.setState({myDay: this.props.myDay})
+      console.log('in this!')
+      this.props.newDay(this.props.myDay)
     }
+    
 
   }
 
@@ -56,8 +61,8 @@ class Days extends Component {
   }
 
   render() {
-    
     const {meals} = this.props.myDay
+    console.log('passedmeals',meals)
     return (
       <div>
         <Input
@@ -68,7 +73,7 @@ class Days extends Component {
           placeholder={this.state.myDay.createdAtString}
           icon='view_headline'
         />
-
+        <h2 align='center'>Meals</h2>
         <AllMeal myDay={this.state.myDay}/>
         <CalorieTracker meals={meals} />
         <MacroTracker meals={meals} />
@@ -98,6 +103,9 @@ const mapDispatchToProps = dispatch => {
     },
     newDay: (day) => {
       dispatch(newDay(day))
+    },
+    getMealItems: () => {
+      dispatch(getMealItems())
     }
   }
 }

@@ -58,7 +58,6 @@ class AllFoods extends Component {
     } else {
       const currentMealId = Number(window.location.pathname.split('/')[3])
       let hitCount = -1
-      console.log('PROPS OF db food', this.props)
       return this.props.dbfoods.hits.map(individualHits => {
         hitCount++
         return (
