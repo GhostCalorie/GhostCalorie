@@ -1,3 +1,6 @@
+import React from 'react'
+import {connect} from 'react-redux'
+
 const Footer = props => (
   <footer className="page-footer green">
     <div className="container">
