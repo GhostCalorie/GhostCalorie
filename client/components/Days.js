@@ -6,7 +6,7 @@ import 'materialize-css/dist/js/materialize.js';
 import 'materialize-css/dist/css/materialize.css';
 import {Input} from 'react-materialize'
 import moment from 'moment'
-import {AllMeal} from './index'
+import {AllMeal, CalorieTracker} from './index'
 
 class Days extends Component {
   constructor() {
@@ -58,7 +58,8 @@ class Days extends Component {
 
 
   render() {
-    console.log('myDay', this.state.myDay)
+    
+    const {meals} = this.props.myDay
     return (
       <div>
         <Input
@@ -71,6 +72,7 @@ class Days extends Component {
         />
 
         <AllMeal myDay={this.state.myDay}/>
+        <CalorieTracker meals={meals} />
       </div>
     )
   }

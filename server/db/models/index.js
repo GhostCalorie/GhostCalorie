@@ -25,6 +25,9 @@ Meal.belongsToMany(Food, {through : MealItem})
 User.hasMany(Day)
 Day.belongsTo(User)
 
+Meal.belongsTo(User)
+User.hasMany(User)
+
 
 
 

@@ -71,11 +71,8 @@ export const postFood = (newFood, mealId) => dispatch => {
     axios
         .post('/api/food', { newFood, mealId })
         .then(({ data }) => {
-            // console.log('food data in stor', data.food)
-            // console.log('mealitem data in stor', data.mealItem)
             dispatch(addFood(data.food))
             dispatch(addMealItem(data.mealItem))
-            // history.push(`/food/${data.id}`)
         })
         .catch(error => console.error(error))
 }
