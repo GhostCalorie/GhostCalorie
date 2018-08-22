@@ -8,7 +8,6 @@ class AddFood extends React.Component {
         
         const currentMealId = Number(window.location.pathname.split('/')[2])
         await this.props.postFood(addedFood, currentMealId)
-        console.log('leaving...')
         this.props.history.push(`/`)
     }
     render() {
@@ -18,9 +17,7 @@ class AddFood extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
     postFood: async (food, mealId) => { 
-        console.log('in first!!')
         await dispatch( postFood(food, mealId))
-        console.log('woopee')
         await dispatch( getMeals())
     }
 })
