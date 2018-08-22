@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
-import { me, fetchDay, newDay, getMealItems} from '../store'
+import { me, fetchDay, newDay, getMeals} from '../store'
 import 'jquery';
 import 'materialize-css/dist/js/materialize.js';
 import 'materialize-css/dist/css/materialize.css';
@@ -46,10 +46,10 @@ class Days extends Component {
   async componentDidMount() {
     await this.props.getUser()
     await this.props.fetchDay(this.props.user)
+    
 
     if (Object.keys(this.props.myDay).length > 1) {
       this.setState({myDay: this.props.myDay})
-      console.log('in this!')
       this.props.newDay(this.props.myDay)
     }
     
@@ -62,7 +62,6 @@ class Days extends Component {
 
   render() {
     const {meals} = this.props.myDay
-    console.log('passedmeals',meals)
     return (
       <div>
         <Input
@@ -104,8 +103,8 @@ const mapDispatchToProps = dispatch => {
     newDay: (day) => {
       dispatch(newDay(day))
     },
-    getMealItems: () => {
-      dispatch(getMealItems())
+    getMeals: () => {
+      dispatch(getMeals())
     }
   }
 }

@@ -22,8 +22,7 @@ class CalorieTracker extends Component {
               }}
             >
                 <VictoryLabel  text='Calories' x={130} y={40}/>
-                <VictoryLabel text='You' x={80} y={150} />
-                <VictoryLine data={[{x:0,y:20000}, {x:200, y:20000} ]}/>
+                <VictoryLine data={[{x:0,y:20000}, {x:200, y:20000}]} labelComponent={<VictoryLabel text='You' />} labels={['You']}/>
                 
                 <VictoryBar
                     style={{ data: { fill: "#c43a31" } }}
