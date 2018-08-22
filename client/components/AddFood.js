@@ -1,13 +1,14 @@
 import React from 'react'
 import { AddFormField } from '../components'
-import { postFood } from '../store'
+import { postFood , getMeals} from '../store'
 import { connect } from 'react-redux'
 
 class AddFood extends React.Component {
-    submit = addedFood => {
+    submit = async addedFood => {
         
         const currentMealId = Number(window.location.pathname.split('/')[2])
-        this.props.postFood(addedFood, currentMealId)
+        await this.props.postFood(addedFood, currentMealId)
+        console.log('leaving...')
         this.props.history.push(`/`)
     }
     render() {
@@ -16,7 +17,12 @@ class AddFood extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    postFood: (food, mealId) => dispatch(postFood(food, mealId))
+    postFood: async (food, mealId) => { 
+        console.log('in first!!')
+        await dispatch( postFood(food, mealId))
+        console.log('woopee')
+        await dispatch( getMeals())
+    }
 })
 
 export default connect(null, mapDispatchToProps)(AddFood)

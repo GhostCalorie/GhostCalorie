@@ -2,13 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { AllFoods, CalorieGraph } from '../components'
+import {getMeals} from '../store'
 
 
 class AllMeal extends React.Component {
 
-  render() {
+  componentWillMount() {
+    this.props.getMeals()
+  }
 
-    console.log('allmealmyday', this.props.myDay)
+  render() {
     return (
 
       <div className="container">
@@ -55,4 +58,12 @@ const mapStateToProps = state => {
 
 }
 
-export default connect(mapStateToProps, null)(AllMeal)
+const mapDispatchToProps = dispatch => {
+  return {
+    getMeals: () => {
+      dispatch(getMeals())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllMeal)

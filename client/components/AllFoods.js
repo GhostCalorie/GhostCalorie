@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {postFood, putMealItem, delMealItem} from '../store'
+import {postFood, putMealItem, delMealItem, getMeals} from '../store'
 
 class AllFoods extends Component {
   //   submit = (addedFood, currentMealId) => {
@@ -89,9 +89,18 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postFood: (newFood, mealId) => dispatch(postFood(newFood, mealId)),
-    putMealItem: mealItem => dispatch(putMealItem(mealItem)),
-    delMealItem: mealId => dispatch(delMealItem(mealId))
+    postFood: async (newFood, mealId) => {
+      await dispatch(postFood(newFood, mealId))
+      await dispatch(getMeals())
+    },
+    putMealItem: async mealItem => {
+      await dispatch(putMealItem(mealItem))
+      await dispatch(getMeals())
+    },
+    delMealItem: async mealId => {
+      await dispatch(delMealItem(mealId))
+      await dispatch(getMeals())
+    }
   }
 }
 

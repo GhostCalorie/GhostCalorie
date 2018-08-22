@@ -115,8 +115,7 @@ export default function (state = defaultMealItem, action) {
       return {
         ...state,
         byId: Object.values(state.byId).reduce((result, mealItem) => {
-          if(mealItem.id !== action.mealId)
-          result[mealItem.id] = mealItem
+          if(mealItem.id !== action.mealId) result[mealItem.id] = mealItem
           return result
         }, {}),
         allIds: [...state.allIds]

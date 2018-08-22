@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {VictoryChart, VictoryBar, VictoryTheme} from 'victory'
+import {VictoryChart, VictoryBar, VictoryTheme, VictoryLabel} from 'victory'
 import { me, fetchDay, newDay} from '../store'
 
 class CalorieTracker extends Component {
@@ -16,7 +16,12 @@ class CalorieTracker extends Component {
             theme={VictoryTheme.material}
             width={400}
             height={400}
+            animate={{
+                duration: 2000,
+                onLoad: { duration: 1000 }
+              }}
             >
+                <VictoryLabel  text='Calories' />
                 <VictoryBar
                     style={{ data: { fill: "#c43a31" } }}
                     alignment="start"
@@ -30,7 +35,6 @@ class CalorieTracker extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log('calstate', state)
     return {
 
     }
